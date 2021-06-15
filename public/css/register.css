@@ -8,6 +8,15 @@
   .container {
     width: 100%;
   }
+  .form {
+    width: 100%;
+  }
+  .form input {
+    max-width: 100%;
+  }
+  .form form {
+    max-width: 95%;
+  }
 }
 @media (min-width: 768px) {
   .container {
