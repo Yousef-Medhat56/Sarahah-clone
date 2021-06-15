@@ -1,11 +1,19 @@
+//import modules
+
 const express = require("express")
-
 const app = express()
+const ejs = require('ejs')
+const mongoose = require("mongoose")
+require('dotenv').config()
 
-app.listen(7777, () => {
-    console.log(`we are lisening on http://localhost:7777/`)
-})
+const PORT = process.env.PORT || 7777
 
-app.get("/", (req, res) => {
-    res.send("set up sarahah-clone project")
+//connect database
+mongoose.connect(process.env.db_url, { useUnifiedTopology: true, useNewUrlParser: true }, () => {
+
+    app.listen(PORT, () => {
+        console.log(`we are lisening on http://localhost:7777/signup`)
+        console.log('database connected')
+    })
+
 })
