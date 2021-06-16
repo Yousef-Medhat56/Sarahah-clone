@@ -1,11 +1,10 @@
 const router = require("express").Router()
 
+//import controllers
+const { signup_get, signup_post } = require("../Controller/signup controllers")
 
-router.get('/', (req, res) => {
+router.get('/', signup_get)
 
-    //send the sign up page
-    res.render('register')
-})
-
+router.post('/', signup_post)
 
 module.exports = router
