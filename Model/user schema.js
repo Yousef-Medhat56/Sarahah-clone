@@ -40,6 +40,9 @@ userScema.pre("save", async function() {
     const salt = await genSalt() // generate salt
     const hashedPassword = await hash(this.password, salt) // hash password
     this.password = hashedPassword //assign the hashed password to the user password
+
+    // delete confirmPassword key form the schema
+    this.confirmPassword = undefined
 })
 
 const UserModel = mongoose.model('user', userScema)
