@@ -7,12 +7,24 @@
                 <form>
                     <label for="username">username</label>
                     <input type="text" name="username" id="username" placeholder="Enter your name..." />
+                    <!--username error message-->
+                    <div class="error username"></div>
+
                     <label for="email">email address</label>
                     <input type="email" name="email" id="email" placeholder="Email Adress" />
+                    <!--email error message-->
+                    <div class="error email"></div>
+
                     <label for="password">password</label>
                     <input type="password" name="password" id="password" placeholder="Password must be at least 8 characters" />
+                    <!--password error message-->
+                    <div class="error password"></div>
+
                     <label for="confirm-password">confirm password</label>
-                    <input type="password" id="conform_password" placeholder="Confirm Passord" />
+                    <input type="password" name="confirmPassword" id="confirm-password" placeholder="Confirm Passord" />
+                    <!--confirm password error message-->
+                    <div class="error confirmPassword"></div>
+
                     <div class="gender">
                         <div class="gendertext">gender</div>
                         <div class="radio">
