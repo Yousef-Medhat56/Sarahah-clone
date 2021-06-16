@@ -21,6 +21,17 @@ const userScema = new mongoose.Schema({
         minlength: [8, 'The password must be 8 characters at minimum'],
         maxlength: [20, 'The password must be 20 characters at maximum']
     },
+    confirmPassword: {
+        type: String,
+        required: [true, "Please confirm your password"],
+        validate: [
+            function() {
+                //check the passwords match together
+                return this.confirmPassword === this.password
+            },
+            'Passwords must match together'
+        ]
+    },
     gender: String
 })
 
