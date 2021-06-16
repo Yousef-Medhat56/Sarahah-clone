@@ -4,7 +4,7 @@ const UserModel = require("../Model/user schema")
 //GET the signup page
 const signup_get = (req, res) => {
     //send the sign up page
-    res.render('register')
+    res.render('register', { title: "Sign Up" })
 }
 
 //POST to the signup page
