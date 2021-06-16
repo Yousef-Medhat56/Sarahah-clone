@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const { genSalt, hash } = require("bcryptjs")
 
 //create user schema
 const userScema = new mongoose.Schema({
@@ -24,6 +25,12 @@ const userScema = new mongoose.Schema({
     }
 })
 
+// hash the user password after sign up before creating his account
+userScema.pre("save", async function() {
+    const salt = await genSalt() // generate salt
+    const hashedPassword = await hash(this.password, salt) // hash password
+    this.password = hashedPassword //assign the hashed password to the user password
+})
 
 const UserModel = mongoose.model('user', userScema)
 
