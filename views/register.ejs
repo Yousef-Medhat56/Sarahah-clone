@@ -5,28 +5,61 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register</title>
+    <link rel="stylesheet" href="../public/css/register.css" />
+    <link rel="stylesheet" href="../public/css/normalize.css" />
+    <link rel="stylesheet" href="../public/css/all.min.css" />
   </head>
   <body>
     <div class="container">
-      <div class="text">sign up</div>
-      <form action="" method="POST">
-        <label for="username">username</label>
-        <input type="text" name="username" id="username" />
-        <label for="email">email address</label>
-        <input type="email" name="email" id="email" />
-        <label for="password">password</label>
-        <input type="password" name="password" id="password" />
-        <label for="confirm-password">confirm password</label>
-        <input type="password" name="confirm-password" id="conform_password" />
-        <div class="gender">
-          <div>gender</div>
-          <label for="male">male</label>
-          <input type="radio" name="gender" id="male" value="male" />
-          <label for="female">female</label>
-          <input type="radio" name="gender" id="female" value="female" />
-        </div>
-        <input type="submit" value="sign-up" />
-      </form>
+      <div class="form">
+        <div class="text">sign up</div>
+        <form action="" method="POST">
+          <label for="username">username</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+          />
+          <label for="email">email address</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email Adress"
+          />
+          <label for="password">password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+          />
+          <label for="confirm-password">confirm password</label>
+          <input
+            type="password"
+            name="confirm-password"
+            id="conform_password"
+            placeholder="Confirm Passord"
+          />
+          <div class="gender">
+            <div class="gendertext">gender</div>
+            <div class="radio">
+              <label for="male" class="radio-label">male</label>
+              <input
+                type="radio"
+                name="gender"
+                id="male"
+                value="male"
+                checked
+              />
+              <label for="female" class="radio-label">female</label>
+              <input type="radio" name="gender" id="female" value="female" />
+            </div>
+          </div>
+          <input type="submit" value="sign-up" class="button" />
+        </form>
+      </div>
     </div>
   </body>
 </html>
