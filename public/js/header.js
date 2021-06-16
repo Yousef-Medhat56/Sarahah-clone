@@ -11,6 +11,9 @@ darkBtn.addEventListener("click", function () {
   moon.classList.toggle("fadeIn");
   moon.classList.toggle("fadeOut");
   body.classList.toggle("dark-mode");
+  sun.classList.toggle("clicked");
+  moon.classList.toggle("clicked");
+  darkBtn.classList.toggle("button-clicked");
 });
 listBtn.addEventListener("click", function () {
   list.classList.toggle("visible");
