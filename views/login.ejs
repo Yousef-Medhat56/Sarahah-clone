@@ -1,0 +1,29 @@
+<%- include("./partials/header.ejs") %>
+
+    <body>
+        <div class="container">
+            <div class="form">
+                <div class="text">Log in</div>
+                <form>
+
+                    <!--email error message-->
+                    <div class="error email"></div>
+                    <!--input the email-->
+                    <label for="email">email address</label>
+                    <input type="text" name="email" id="email" placeholder="Please enter your email..." />
+
+                    <!--password error message-->
+                    <div class="error password"></div>
+                    <!--input the password-->
+                    <label for="password">password</label>
+                    <input type="password" name="password" id="password" placeholder="Please enter your password..." />
+
+
+
+                    <input type="submit" value="Log in" class="button" />
+                </form>
+            </div>
+        </div>
+    </body>
+
+    </html>
