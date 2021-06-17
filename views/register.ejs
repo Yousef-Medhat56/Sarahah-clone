@@ -3,41 +3,42 @@
     <body>
         <div class="container">
             <div class="form">
-                <div class="text">sign up</div>
+                <div class="text light-text" >sign up</div>
                 <form>
-                    <label for="username">username</label>
+                    <label for="username" class="light-text">username</label>
                     <input type="text" name="username" id="username" placeholder="Enter your name..." />
                     <!--username error message-->
                     <div class="error username"></div>
 
-                    <label for="email">email address</label>
+                    <label for="email" class="light-text">email address</label>
                     <input type="email" name="email" id="email" placeholder="Email Adress" />
                     <!--email error message-->
                     <div class="error email"></div>
 
-                    <label for="password">password</label>
+                    <label for="password" class="light-text">password</label>
                     <input type="password" name="password" id="password" placeholder="Password must be at least 8 characters" />
                     <!--password error message-->
                     <div class="error password"></div>
 
-                    <label for="confirm-password">confirm password</label>
+                    <label for="confirm-password" class="light-text">confirm password</label>
                     <input type="password" name="confirmPassword" id="confirm-password" placeholder="Confirm Passord" />
                     <!--confirm password error message-->
                     <div class="error confirmPassword"></div>
 
                     <div class="gender">
-                        <div class="gendertext">gender</div>
+                        <div class="gendertext light-text">gender</div>
                         <div class="radio">
-                            <label for="male" class="radio-label">male</label>
+                            <label for="male" class="radio-label light-text">male</label>
                             <input type="radio" name="gender" id="male" value="male" checked />
-                            <label for="female" class="radio-label">female</label>
+                            <label for="female" class="radio-label light-text">female</label>
                             <input type="radio" name="gender" id="female" value="female" />
                         </div>
                     </div>
-                    <input type="submit" value="sign-up" class="button" />
+                    <input type="submit" value="sign-up" class="button light-text" />
                 </form>
             </div>
         </div>
+        <script src="./js/header.js"></script>
     </body>
 
     <script src="./js/signup.js"></script>
