@@ -54,7 +54,6 @@ body {
   top: 12vh;
   left: 50%;
   transform: translate(-50%, 0);
-  background-color: rgba(0, 0, 0, 10%);
   color: black;
   padding: 20px 30px;
   border-radius: 5px;
@@ -156,12 +155,16 @@ form .button {
 }
 
 .dark-text {
-  color: white !important;
+  color: rgb(218, 216, 216) !important;
   transition: 0.5s;
 }
 .light-text {
   transition: 0.5s;
+  color: rgb(32, 32, 32) ;
 }
-.light-form {
+.background-dark{
   background-color: rgba(255, 255, 255, 0.08);
+}
+.background-light{
+  background-color: rgba(0, 0, 0, 10%);
 }
