@@ -7,6 +7,7 @@ const mongoose = require("mongoose")
 require('dotenv').config()
 
 const signupRoute = require("./Routes/signupRoutes.js") //import sign up routes 
+const loginRoute = require("./Routes/loginRoutes.js") //import login routes 
 
 const PORT = process.env.PORT || 7777
 
@@ -22,11 +23,14 @@ app.use(express.json())
 mongoose.connect(process.env.db_url, { useUnifiedTopology: true, useNewUrlParser: true }, () => {
 
     app.listen(PORT, () => {
-        console.log(`we are building http://localhost:7777/signup`)
+        console.log(`we are building http://localhost:7777/Login`)
         console.log('database connected')
     })
 
 })
 
 //sign up routes
-app.use('/signup', signupRoute)
+app.use('/Signup', signupRoute)
+
+//login routes
+app.use('/Login', loginRoute)
