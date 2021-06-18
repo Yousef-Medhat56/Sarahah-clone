@@ -5,7 +5,7 @@ const body = document.querySelector("body");
 const listBtn = document.querySelector(".list-icon");
 const list = document.querySelector("ul");
 const text = document.getElementsByClassName("light-text");
-const form = document.querySelector(".form");
+const bg = document.getElementsByClassName("background-light");
 const footer = document.querySelector(".footer");
 
 darkBtn.addEventListener("click", function () {
@@ -20,10 +20,9 @@ darkBtn.addEventListener("click", function () {
   for (word of text) {
     word.classList.toggle("dark-text");
   }
-  form.classList.toggle("background-light");
-  form.classList.toggle("background-dark");
-  footer.classList.toggle("background-light");
-  footer.classList.toggle("background-dark");
+  for (back of bg) {
+    back.classList.toggle("background-dark");
+  }
 });
 listBtn.addEventListener("click", function () {
   list.classList.toggle("visible");

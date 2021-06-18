@@ -46,7 +46,7 @@
 .container {
   margin-left: auto;
   margin-right: auto;
-  padding: 0 15px;
+  padding: 15px;
 }
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -158,20 +158,19 @@ form .button {
   letter-spacing: 0.7px;
   cursor: pointer;
 }
-
-.dark-text {
-  color: rgb(218, 216, 216) !important;
-  transition: 0.5s;
-}
 .light-text {
   transition: 0.5s;
   color: rgb(32, 32, 32);
 }
-.background-dark {
-  background-color: rgba(255, 255, 255, 0.08);
+.dark-text {
+  color: rgb(218, 216, 216) !important;
+  transition: 0.5s;
 }
 .background-light {
   background-color: rgba(0, 0, 0, 10%);
+}
+.background-dark {
+  background-color: rgba(255, 255, 255, 0.08);
 }
 /* error message styling */
 .err-message {
