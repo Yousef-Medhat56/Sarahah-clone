@@ -6,6 +6,7 @@
   const list = document.querySelector("ul");
   const text = document.getElementsByClassName("light-text");
   const form = document.querySelector(".form");
+  const footer =document.querySelector(".footer")
 
   darkBtn.addEventListener("click", function () {
     sun.classList.toggle("fadeIn");
@@ -19,7 +20,11 @@
     for (word of text) {
       word.classList.toggle("dark-text");
     }
-    form.classList.toggle("light-form")
+    form.classList.toggle("background-light")
+    form.classList.toggle("background-dark")
+    footer.classList.toggle("background-light")
+    footer.classList.toggle("background-dark")
+    
   });
   listBtn.addEventListener("click", function () {
     list.classList.toggle("visible");
