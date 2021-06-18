@@ -4,7 +4,7 @@
         <div class="container">
             <div class="form background-light">
                 <div class="text light-text">Sign up</div>
-                <form>
+                <form onsubmit='sendAuthReq(event,"/signup")'>
 
                     <!--username error message-->
                     <div class="error username"></div>
@@ -48,9 +48,10 @@
                 </form>
             </div>
         </div>
-        <script src="./js/header.js"></script>
-    </body>
 
-    <script src="./js/signup.js"></script>
+        <!--Footer-->
+        <%- include("./partials/footer.ejs") %>
 
-    </html>
+            <script src="./js/sendAuthRequest.js"></script>
+
+            </html>

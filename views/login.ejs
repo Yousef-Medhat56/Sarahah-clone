@@ -4,7 +4,8 @@
         <div class="container">
             <div class="form background-light">
                 <div class="text light-text">Log in</div>
-                <form>
+                <form onsubmit='sendAuthReq(event,"/Login")'>
+
 
                     <!--email error message-->
                     <div class="error email"></div>
@@ -24,7 +25,9 @@
                 </form>
             </div>
         </div>
-        <script src="./js/header.js"></script>
-    </body>
+        <!--Footer-->
+        <%- include("./partials/footer.ejs") %>
 
-    </html>
+            <script src="./js/sendAuthRequest.js"></script>
+
+            </html>
