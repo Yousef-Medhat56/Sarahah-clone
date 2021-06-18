@@ -34,3 +34,8 @@ app.use('/Signup', signupRoute)
 
 //login routes
 app.use('/Login', loginRoute)
+
+//welcome page 
+app.get("/welcome", (req, res) => {
+    res.send("welcome!!")
+})
