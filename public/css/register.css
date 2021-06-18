@@ -7,7 +7,7 @@
 @media (max-width: 767px) {
   .container {
     width: 100%;
-    padding: 0px !important;
+    padding: 15px !important;
   }
   .form {
     width: 100%;
@@ -21,6 +21,9 @@
   }
   .form form {
     max-width: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
 }
 @media (min-width: 768px) {
@@ -47,13 +50,15 @@
 }
 body {
   font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
 }
 
 .form {
-  position: absolute;
-  top: 12vh;
-  left: 50%;
-  transform: translate(-50%, 0);
+  width: fit-content;
+  margin: 10vh auto;
   color: black;
   padding: 20px 30px;
   border-radius: 5px;
@@ -167,4 +172,17 @@ form .button {
 }
 .background-light{
   background-color: rgba(0, 0, 0, 10%);
+}
+/* error message styling */
+.err-message{
+  background-color: #ff000029;
+  padding: 6px 12px;
+  width: fit-content;
+  border-radius: 4px;
+  color: #4b0808;
+  border: 1.5px solid #4b080838;
+  transition: 0.5s;
+}
+.err-message-dark{
+  background-color: #faa9a963;
 }

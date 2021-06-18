@@ -31,8 +31,11 @@ body {
 }
 body {
   transition: 0.6s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.container {
+.header .container {
   margin-left: auto;
   margin-right: auto;
   padding: 0 15px;
@@ -155,7 +158,9 @@ ul li a {
   font-size: 27px;
 }
 .visible {
-  display: flex;
+  transition-duration: .3s;
+  opacity: 1;
+  pointer-events: all;
 }
 .visible::before {
   content: "";
@@ -172,14 +177,17 @@ ul li a {
 }
 @media (max-width: 570px) {
   ul {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    transition-duration: .3s;
     flex-direction: column;
     background-color: rgba(0, 0, 0, 30%);
     height: auto;
     width: 30vw;
     position: absolute;
     right: -15px;
-    top: 9vh;
+    top: calc(9vh - 15px);
     z-index: 3;
   }
   .list-icon {

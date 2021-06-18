@@ -6,7 +6,8 @@
   const list = document.querySelector("ul");
   const text = document.getElementsByClassName("light-text");
   const form = document.querySelector(".form");
-  const footer =document.querySelector(".footer")
+  const footer =document.querySelector(".footer");
+  const errMessage = document.getElementsByClassName("err-message")
 
   darkBtn.addEventListener("click", function () {
     sun.classList.toggle("fadeIn");
@@ -24,6 +25,9 @@
     form.classList.toggle("background-dark")
     footer.classList.toggle("background-light")
     footer.classList.toggle("background-dark")
+    for(msg of errMessage) {
+      msg.classList.toggle("err-message-dark")
+    }
     
   });
   listBtn.addEventListener("click", function () {
