@@ -35,11 +35,11 @@ async function sendAuthReq(e, path) {
 
         let x = 0; // to control the numbers of shown errors to the user
         for (let errKey of errKeysArr) {
-            formElm.querySelector(`.error.${errKey}`).textContent = ""; //reset all the error messages after each sumbit
+            formElm.querySelector(`.error.${errKey}`).innerHTML = ""; //reset all the error messages after each sumbit
 
             //show the first error only in the error object
             if (x < 1 && err[errKey]) {
-                formElm.querySelector(`.error.${errKey}`).textContent = err[errKey]; //write the error message
+                formElm.querySelector(`.error.${errKey}`).innerHTML = `<p class = "err-message">${err[errKey]}</p>`; //write the error message
                 x++; //to prevent any other error message from appearance in case there are more than one error
             }
         }
