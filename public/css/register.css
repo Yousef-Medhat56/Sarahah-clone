@@ -57,7 +57,7 @@ body {
 }
 
 .form {
-  width: fit-content;
+  max-width: fit-content;
   margin: 10vh auto;
   color: black;
   padding: 20px 30px;
@@ -165,24 +165,21 @@ form .button {
 }
 .light-text {
   transition: 0.5s;
-  color: rgb(32, 32, 32) ;
+  color: rgb(32, 32, 32);
 }
-.background-dark{
+.background-dark {
   background-color: rgba(255, 255, 255, 0.08);
 }
-.background-light{
+.background-light {
   background-color: rgba(0, 0, 0, 10%);
 }
 /* error message styling */
-.err-message{
-  background-color: #ff000029;
+.err-message {
+  background-color: #dab9b9d8;
   padding: 6px 12px;
   width: fit-content;
   border-radius: 4px;
   color: #4b0808;
   border: 1.5px solid #4b080838;
   transition: 0.5s;
-}
-.err-message-dark{
-  background-color: #faa9a963;
 }
