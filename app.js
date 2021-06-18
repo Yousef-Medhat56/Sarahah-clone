@@ -39,3 +39,10 @@ app.use('/Login', loginRoute)
 app.get("/welcome", (req, res) => {
     res.send("welcome!!")
 })
+
+
+//if the user entered wrong url
+app.use("*", (req, res) => {
+    //send 404 page
+    res.status(404).render('404', { title: 'Sarahah clone | Page not found' })
+})
