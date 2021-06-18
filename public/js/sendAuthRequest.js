@@ -39,7 +39,7 @@ async function sendAuthReq(e, path) {
 
             //show the first error only in the error object
             if (x < 1 && err[errKey]) {
-                formElm.querySelector(`.error.${errKey}`).innerHTML = `<p class = "err-message">${err[errKey]}</p>`; //write the error message
+                formElm.querySelector(`.error.${errKey}`).innerHTML = `<p class = "err-message"><i class="fas fa-exclamation-circle"></i> ${err[errKey]}</p>`; //write the error message
                 x++; //to prevent any other error message from appearance in case there are more than one error
             }
         }
