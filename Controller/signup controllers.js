@@ -1,9 +1,17 @@
 //import user model
 const UserModel = require("../Model/user schema")
 
+//handle sign up errors
+const handleErrors = require("./handlers/authentication errors")
 
-//handle user errors
-const handleErrors = (errorsObj, errorCode) => {
+//GET the signup page
+const signup_get = (req, res) => {
+    //send the sign up page
+    res.render('register', { title: "Sign Up" })
+}
+
+//POST to the signup page
+const signup_post = async(req, res) => {
 
     /*errMessagesObj = {
         key : the error location (for example : the username field)
@@ -15,42 +23,16 @@ const handleErrors = (errorsObj, errorCode) => {
         password: "",
         confirmPassword: ""
     }
-
-    //check if the email is already registered (not unique)
-    if (errorCode) errMessagesObj["email"] = "This email is already registered"
-
-    //if the email is registered but there are other errors
-    else if (errorsObj) {
-        // convert the errors object to array
-        const errorsArr = Object.values(errorsObj)
-        errorsArr.forEach(({ properties }) => { //destructing the properties object 
-
-            /*assign the error message to the error location
-            for example:
-            errMessagesObj[email] = "This email is already registered"*/
-            errMessagesObj[properties.path] = properties.message
-        })
-    }
-
-    return errMessagesObj
-}
-
-//GET the signup page
-const signup_get = (req, res) => {
-    //send the sign up page
-    res.render('register', { title: "Sign Up" })
-}
-
-//POST to the signup page
-const signup_post = async(req, res) => {
     try {
         //create new accout if the form data is valid
         const user = await UserModel.create(req.body)
-        res.send(user)
+
+        //redirect the user to the welcome page
+        res.send({ redirect: "/welcome" })
     } catch (err) { //if the user input invalid data 
 
         //send (bad request status and invoke (handleErrors) function) 
-        res.status(400).json(handleErrors(err.errors, err.code))
+        res.status(400).json(handleErrors(err.errors, errMessagesObj, err.code))
     }
 }
 
