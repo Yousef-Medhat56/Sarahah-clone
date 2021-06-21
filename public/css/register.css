@@ -212,3 +212,16 @@ form .button {
   border: 1.5px solid #4b080838;
   transition: 0.5s;
 }
+/* redirection lik styling */
+.redirect {
+  text-align: center;
+}
+.redirect a {
+  text-decoration: none;
+  color: #23aab9;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.redirect a:hover {
+  color: rgb(84, 153, 143);
+}

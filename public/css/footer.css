@@ -10,9 +10,9 @@
 }
 .footer a {
   text-decoration: none;
-  color: #005059;
+  color: #23aab9;
   transition: color 0.3s;
 }
 .footer a:hover {
-  color: rgb(135, 175, 169);
+  color: rgb(84, 153, 143);
 }
