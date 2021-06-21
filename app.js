@@ -4,10 +4,13 @@ const express = require("express")
 const app = express()
 const ejs = require('ejs')
 const mongoose = require("mongoose")
+const cookieParser = require("cookie-parser")
 require('dotenv').config()
 
 const signupRoute = require("./Routes/signupRoutes.js") //import sign up routes 
 const loginRoute = require("./Routes/loginRoutes.js") //import login routes 
+
+const { verifyAccessToken, verifyRefreshToken } = require("./Controller/handlers/control jwt")
 
 const PORT = process.env.PORT || 7777
 
@@ -16,6 +19,7 @@ app.set('view engine', 'ejs')
 
 //Middlewares
 app.use(express.static('public'))
+app.use(cookieParser())
 app.use(express.urlencoded())
 app.use(express.json())
 
@@ -36,8 +40,10 @@ app.use('/Signup', signupRoute)
 app.use('/Login', loginRoute)
 
 //welcome page 
-app.get("/welcome", (req, res) => {
-    res.send("welcome!!")
+app.get("/welcome", verifyRefreshToken, verifyAccessToken, async(req, res) => {
+    const UserModel = require("./Model/user schema")
+    const user = await UserModel.findById(req.user.userId)
+    res.send(user)
 })
 
 
