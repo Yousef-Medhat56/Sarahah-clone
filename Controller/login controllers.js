@@ -3,10 +3,17 @@ const { compare } = require("bcryptjs")
 const UserModel = require("../Model/user schema")
 const handleErrors = require("./handlers/authentication errors")
 
+//jwt
+const { createToken } = require("./handlers/control jwt")
+
 //GET the login page
 const login_get = (req, res) => {
+
+
+
     //send the login page
     res.render('login', { title: "Log in" })
+
 }
 
 //POST the login page
@@ -39,6 +46,13 @@ const login_post = async(req, res) => {
 
                 //if the password is true
                 if (passIsTrue) {
+
+
+                    //create new access and refresh tokens
+                    const accessToken = await createToken(account._id, process.env.access_token_secret, "7d")
+                    const refreshToken = await createToken(account._id, process.env.refresh_token_secret, "1y")
+                    res.cookie("accessToken", accessToken, { maxAge: 7 * 24 * 60 * 60 * 1000 })
+                    res.cookie("refreshToken", refreshToken, { maxAge: 365 * 24 * 60 * 60 * 1000 })
 
                     //redirect the user to the welcome page
                     res.send({ redirect: "/welcome" })
