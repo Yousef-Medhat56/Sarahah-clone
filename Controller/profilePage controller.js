@@ -18,4 +18,9 @@ const profilePage_get = async(req, res, next) => {
 
 }
 
-module.exports = { profilePage_get }
+const profilePage_logout = (req, res) => {
+
+    res.cookie("refreshToken", '', { maxAge: 1 })
+    res.send({ redirect: "/login" })
+}
+module.exports = { profilePage_get, profilePage_logout }
