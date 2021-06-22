@@ -4,16 +4,12 @@ const UserModel = require("../Model/user schema")
 const handleErrors = require("./handlers/authentication errors")
 
 //jwt
-const { createToken } = require("./handlers/control jwt")
+const { createTokens } = require("./handlers/control jwt")
 
 //GET the login page
 const login_get = (req, res) => {
-
-
-
     //send the login page
-    res.render('login', { title: "Log in" })
-
+    res.render('login', { title: "Sarahah clone | Log in" })
 }
 
 //POST the login page
@@ -48,14 +44,15 @@ const login_post = async(req, res) => {
                 if (passIsTrue) {
 
 
+
                     //create new access and refresh tokens
-                    const accessToken = await createToken(account._id, process.env.access_token_secret, "7d")
-                    const refreshToken = await createToken(account._id, process.env.refresh_token_secret, "1y")
-                    res.cookie("accessToken", accessToken, { maxAge: 7 * 24 * 60 * 60 * 1000 })
-                    res.cookie("refreshToken", refreshToken, { maxAge: 365 * 24 * 60 * 60 * 1000 })
+                    await createTokens(account._id)
+
+                    // set refresh token into cookie
+                    res.cookie("refreshToken", refreshToken, { maxAge: year_in_milisec })
 
                     //redirect the user to the welcome page
-                    res.send({ redirect: "/welcome" })
+                    res.send({ redirect: `/${account._id}` })
                 }
 
                 // if the password is invalid
@@ -90,7 +87,8 @@ const login_post = async(req, res) => {
             throw errObj
         }
     } catch (err) {
-        //send (bad request status and invoke (handleErrors) function) 
+        console.log(err)
+            //send (bad request status and invoke (handleErrors) function) 
         res.status(400).json(handleErrors(err.errors, errMessagesObj))
     }
 }
