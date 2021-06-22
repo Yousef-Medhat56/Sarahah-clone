@@ -7,10 +7,10 @@ const mongoose = require("mongoose")
 const cookieParser = require("cookie-parser")
 require('dotenv').config()
 
+//import routers
 const signupRoute = require("./Routes/signupRoutes.js") //import sign up routes 
 const loginRoute = require("./Routes/loginRoutes.js") //import login routes 
-
-const { verifyAccessToken, verifyRefreshToken } = require("./Controller/handlers/control jwt")
+const profilePageRoute = require("./Routes/profilePageRoutes") //import profile page routes
 
 const PORT = process.env.PORT || 7777
 
@@ -39,12 +39,8 @@ app.use('/Signup', signupRoute)
 //login routes
 app.use('/Login', loginRoute)
 
-//welcome page 
-app.get("/welcome", verifyRefreshToken, verifyAccessToken, async(req, res) => {
-    const UserModel = require("./Model/user schema")
-    const user = await UserModel.findById(req.user.userId)
-    res.send(user)
-})
+//profile page 
+app.use("/", profilePageRoute)
 
 
 //if the user entered wrong url
