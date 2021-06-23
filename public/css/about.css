@@ -1,49 +1,5 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-/* responsive */
-@media (max-width: 767px) {
-  .container {
-    width: 100%;
-  }
-}
-@media (min-width: 768px) {
-  .container {
-    width: 750px;
-  }
-}
-
-@media (min-width: 992px) {
-  .container {
-    width: 970px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .container {
-    width: 1170px;
-  }
-}
-.container {
-  margin-left: auto;
-  margin-right: auto;
-  padding: 15px;
-}
-.light-text {
-  transition: 0.5s;
-  color: rgb(32, 32, 32);
-}
-.dark-text {
-  color: rgb(218, 216, 216) !important;
-  transition: 0.5s;
-}
 /* heading styling */
-.content {
+.about-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -74,45 +30,107 @@ body {
   height: 100%;
   flex-basis: 50%;
 }
-.about-us div {
-  margin-bottom: 25%;
-  background-color: #e5e5e5;
+.about-us .card {
+  margin-bottom: 20%;
   border-radius: 5px;
-  padding: 20px;
-  transition: 0.5s;
-  height: 101px;
-  position: relative;
+  display: flex;
+  padding: 15px 10px;
 }
-.about-us div:hover .information {
-  opacity: 1;
-  top: 0;
-}
-.about-us div:hover {
-  height: auto;
-}
-.about-us div h4 {
-  text-transform: capitalize;
-  margin-bottom: 10px;
-}
-.more {
-  margin-top: 10px;
-  margin-bottom: -10px;
-  font-size: 15px;
-  text-align: right;
-  cursor: pointer;
-}
-.more:hover {
-  transform: translate(-1px);
-}
-.more i {
-  font-size: 12px;
-}
-.information {
-  margin: 20px 0 0 !important;
-  height: auto !important;
-  padding: 0 !important;
+.image img {
+  max-width: 80px;
+  border-radius: 50%;
+  filter: saturate(0);
   transition: 0.3s;
-  opacity: 0;
-  position: absolute;
-  top: -100%;
+  box-sizing: content-box;
+}
+.image img:hover {
+  filter: saturate(1);
+}
+.image {
+  margin-right: 10px;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-transform: capitalize;
+}
+.social-links {
+  display: flex;
+  justify-content: center;
+}
+.social-links a {
+  color: #888;
+  transition: 0.5s;
+  font-size: 22px;
+  margin-left: 10px;
+}
+.social-links .insta:hover {
+  color: #a13590;
+}
+.git:hover {
+  color: #222;
+}
+/* responsive styling */
+@media (max-width: 650px) {
+  .about-content {
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+  }
+  .heading {
+    flex-basis: auto;
+    margin-right: 0;
+    margin-bottom: 5vh;
+    position: relative;
+    text-align: center;
+  }
+  .heading::after {
+    content: "";
+    width: 80vw;
+    height: 2px;
+    background-color: #7ac9d0;
+    position: absolute;
+    left: calc(10vw - 15px);
+    bottom: -3vh;
+  }
+  .heading h2 {
+    text-transform: capitalize;
+    margin-bottom: 20px;
+    font-size: 30px;
+  }
+  .heading p {
+    font-size: 20px;
+  }
+  .about-us .card {
+    margin-bottom: 20%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 10px;
+  }
+  .image {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-transform: capitalize;
+  }
+  .info h4,
+  .info h5 {
+    margin-bottom: 10px;
+  }
+  .image img {
+    filter: none;
+  }
+  .insta {
+    color: #a13590 !important;
+  }
+  .git {
+    color: #222 !important;
+  }
 }
