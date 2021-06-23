@@ -72,11 +72,17 @@
   color: #222;
 }
 /* responsive styling */
+@media (max-width: 767px) {
+  .heading h2 {
+    font-size: 40px;
+  }
+}
 @media (max-width: 650px) {
   .about-content {
     flex-direction: column;
     justify-content: center;
     height: auto;
+    margin-top: 7vh;
   }
   .heading {
     flex-basis: auto;

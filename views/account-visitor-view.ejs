@@ -1,8 +1,14 @@
 <%- include("./partials/header.ejs") %>
-    <h1>You are not
-        <%= username %>
-    </h1>
-
+    <div class="container">
+        <div class="viewer-content">
+            <img src="./assets/male.jpg" alt="">
+            <h3 class="user-name light-text">username</h3>
+            <form action="">
+            <textarea name="message" cols="30" rows="10" placeholder="type yor message here" class="background-light"></textarea>
+            <button type="submit">send <i class="far fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
     <%- include("./partials/footer.ejs") %>
 
         </html>
