@@ -2,8 +2,12 @@ const mongoose = require("mongoose")
 const { isEmail } = require("validator")
 const { genSalt, hash } = require("bcryptjs")
 
+const fs = require("fs")
+
+
 //create user schema
 const userScema = new mongoose.Schema({
+
     username: {
         type: String,
         required: [true, 'Please enter your username'],
@@ -26,13 +30,22 @@ const userScema = new mongoose.Schema({
         required: [true, "Please confirm your password"],
         validate: [
             function() {
+
                 //check the passwords match together
                 return this.confirmPassword === this.password
             },
             'Passwords must match together'
         ]
     },
-    gender: String
+    gender: String,
+    image: {
+        type: String,
+        default: function() {
+            if (this.gender == "male") return fs.readFileSync("./Public/assets/male.jpg", { encoding: 'base64' })
+            return fs.readFileSync("./Public/assets/female.jpg", { encoding: 'base64' })
+
+        }
+    }
 })
 
 // hash the user password after sign up before creating his account
