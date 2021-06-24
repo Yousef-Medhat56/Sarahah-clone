@@ -1,11 +1,13 @@
 <%- include("./partials/header.ejs") %>
     <div class="container">
         <div class="viewer-content">
-            <img src="./assets/male.jpg" alt="">
-            <h3 class="user-name light-text">username</h3>
+            <img src="data:image/png;base64,<%=userImage%>" />
+            <h3 class="user-name light-text">
+                <%=username%>
+            </h3>
             <form action="">
-            <textarea name="message" cols="30" rows="10" placeholder="type yor message here" class="background-light"></textarea>
-            <button type="submit">send <i class="far fa-paper-plane"></i></button>
+                <textarea name="message" cols="30" rows="10" placeholder="type yor message here" class="background-light"></textarea>
+                <button type="submit">send <i class="far fa-paper-plane"></i></button>
             </form>
         </div>
     </div>
