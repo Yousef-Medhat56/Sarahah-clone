@@ -3,13 +3,11 @@
     <h1>You are
         <%= username %>
     </h1>
-    <form action="/image" method="POST" enctype="multipart/form-data">
-        <label for="image">change your image</label>
-        <input type="file" name="image" id="image" accept="image/png, image/jpeg">
-        <input type="submit" value="Submit">
-    </form>
 
+
+    <button onclick='sendLogoutReq()'>Log Out</button>
+    <button onclick='sendDelAccReq()'>Delete my account</button>
     <%- include("./partials/footer.ejs") %>
-        <script src="../js/sendAuthRequest.js"></script>
+        <script src="../js/sendDelRequest.js"></script>
 
         </html>
