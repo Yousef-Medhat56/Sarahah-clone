@@ -2,10 +2,13 @@
 
 const express = require("express")
 const app = express()
-const ejs = require('ejs')
+const multer = require('multer')
+const storage = multer.memoryStorage()
+const upload = multer({ storage })
 const mongoose = require("mongoose")
 const cookieParser = require("cookie-parser")
 require('dotenv').config()
+const fs = require("fs")
 
 //import routers
 const signupRoute = require("./Routes/signupRoutes.js") //import sign up routes 
@@ -24,7 +27,7 @@ app.use(express.urlencoded())
 app.use(express.json())
 
 //connect database
-mongoose.connect(process.env.db_url, { useUnifiedTopology: true, useNewUrlParser: true }, () => {
+mongoose.connect(process.env.db_url, { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false }, () => {
 
     app.listen(PORT, () => {
         console.log(`we are building http://localhost:7777/Login`)
@@ -38,7 +41,6 @@ app.use('/Signup', signupRoute)
 
 //login routes
 app.use('/Login', loginRoute)
-
 
 //profile page 
 app.use("/", profilePageRoute)
