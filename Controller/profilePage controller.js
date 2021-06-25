@@ -12,7 +12,7 @@ const profilePage_get = async(req, res, next) => {
         //if who opens the profile page is authenticated owns the profile too, send to him ('account-owner-view') file
         if (authenticatedUser === req.params.id) {
 
-            res.render('account-owner-view', { title: `Sarahah clone | ${user.username}`, username: user.username, userImage: user.image })
+            res.render('account-owner-view', { title: `Sarahah clone | ${user.username}`, username: user.username, userId: user._id, userImage: user.image })
         }
         //if who opens the profile page isn't his owner
         else res.render('account-visitor-view', { title: `Sarahah clone | ${user.username}`, username: user.username, userImage: user.image })
@@ -34,4 +34,12 @@ const profilePage_delAccount = async(req, res) => {
     await UserModel.findByIdAndDelete(req.params.id)
     profilePage_logout(req, res)
 }
-module.exports = { profilePage_get, profilePage_logout, profilePage_delAccount }
+
+//update the user image
+const profilePage_updateImg = async(req, res) => {
+
+    await UserModel.findByIdAndUpdate(req.params.id, { image: req.file.buffer.toString("base64") })
+    res.end()
+}
+
+module.exports = { profilePage_get, profilePage_logout, profilePage_delAccount, profilePage_updateImg }
