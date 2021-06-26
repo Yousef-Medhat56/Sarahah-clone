@@ -1,0 +1,27 @@
+<%- include("./partials/header.ejs") %>
+
+    <!--user image-->
+    <img src="data:image/png;base64,<%=userImage%>" alt="user avatar" />
+    <!--username-->
+    <h1>
+        <%= username %>
+    </h1>
+
+    <!--change user image-->
+    <label for="image">change your image</label>
+    <input type="file" oninput="sendChangeImgReq(event)" name="image" id="image" accept="image/png, image/jpeg">
+
+    <!--change username-->
+    <form onsubmit="sendAuthReq(event, 'settings/profile')">
+        <!--username error message-->
+        <div class="error username"></div>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" placeholder="Enter your new username...." value="<%=username%>">
+        <button type="submit">Edit profile</button>
+    </form>
+    <%- include("./partials/footer.ejs") %>
+
+        <script src="../js/sendPostRequest.js"></script>
+        <script src="../js/sendAuthRequest.js"></script>
+
+        </html>
