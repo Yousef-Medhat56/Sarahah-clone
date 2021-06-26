@@ -1,24 +1,39 @@
 <%- include("./partials/header.ejs") %>
-
+<div class="container">
+    <div class="settings">
+    <div class="navigation">
+        <ul class="settings-nav">
+            <li class="active"><a href="" class="light-text">Edit profile</a></li>
+            <li><a href="" class="light-text">change password</a></li>
+            <li><a href="" class="light-text">account settings</a></li>
+        </ul>
+    </div>
+    <div class="settings-content">
+        <div class="pic">
     <!--user image-->
     <img src="data:image/png;base64,<%=userImage%>" alt="user avatar" />
     <!--username-->
-    <h1>
+    <div class="pic-text">
+    <p class="light-text">
         <%= username %>
-    </h1>
+    </p>
 
     <!--change user image-->
-    <label for="image">change your image</label>
-    <input type="file" oninput="sendChangeImgReq(event)" name="image" id="image" accept="image/png, image/jpeg">
-
+    <label for="image">change profile photo</label>
+    <input class="pic-upload" type="file" oninput="sendChangeImgReq(event)" name="image" id="image" accept="image/png, image/jpeg">
+</div>
+</div>
     <!--change username-->
     <form onsubmit="sendAuthReq(event, 'settings/profile')">
         <!--username error message-->
         <div class="error username"></div>
-        <label for="username">Username</label>
-        <input type="text" name="username" id="username" placeholder="Enter your new username...." value="<%=username%>">
-        <button type="submit">Edit profile</button>
+        <label class="light-text" for="username">Username</label>
+        <input class="light-text" type="text" name="username" id="username" placeholder="Enter your new username...." value="<%=username%>">
+        <button class="submit" type="submit">Save</button>
     </form>
+    </div>
+</div>
+</div>
     <%- include("./partials/footer.ejs") %>
 
         <script src="../js/sendPostRequest.js"></script>

@@ -44,7 +44,7 @@ body {
 
 /* nav styling */
 
-ul {
+.header-nav {
   list-style: none;
   display: flex;
   align-items: center;
@@ -57,7 +57,7 @@ nav {
   position: relative;
 }
 
-ul li {
+.header-nav li {
   padding: 10px;
   height: 100%;
   display: flex;
@@ -76,11 +76,11 @@ ul li {
   -o-border-radius: 3px;
 }
 
-ul li:not(.darks):hover {
+.header-nav li:not(.darks):hover {
   background-color: rgba(255, 255, 255, 20%);
 }
 
-ul li:not(.darks):hover::after {
+.header-nav li:not(.darks):hover::after {
   content: "";
   background-color: #c9e8ea;
   width: 100%;
@@ -90,15 +90,15 @@ ul li:not(.darks):hover::after {
   position: absolute;
 }
 
-ul li a,
-ul li button {
+.header-nav li a,
+.header-nav li button {
   text-decoration: none;
   color: white;
   font-size: 18px;
   text-transform: capitalize;
 }
 
-ul li button {
+.header-nav li button {
   background-color: transparent;
   outline: none;
   border: none;
@@ -195,7 +195,7 @@ ul li button {
 }
 
 @media (max-width: 570px) {
-  ul {
+  .header-nav {
     opacity: 0;
     pointer-events: none;
     display: flex;
@@ -212,19 +212,19 @@ ul li button {
   .list-icon {
     display: block;
   }
-  ul li {
+  .header-nav li {
     position: relative;
     width: 30vw;
     text-align: center;
   }
-  ul li a {
+  .header-nav li a {
     width: 30vw;
     text-align: center;
   }
   .darks {
     justify-content: center;
   }
-  li:not(.darks)::after {
+  .header-nav li:not(.darks)::after {
     content: "";
     background-color: #c9e8ea;
     width: 30vw;

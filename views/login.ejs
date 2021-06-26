@@ -2,6 +2,7 @@
 
     <body>
         <div class="container">
+            <div class="register">
             <div class="form background-light">
                 <div class="text light-text">Log in</div>
                 <form onsubmit='sendAuthReq(event,"/Login")'>
@@ -24,6 +25,7 @@
                     <p class="redirect light-text">Don't have an account? <a href="/signup">sign up</a></p>
                 </form>
             </div>
+        </div>
         </div>
         <!--Footer-->
         <%- include("./partials/footer.ejs") %>
