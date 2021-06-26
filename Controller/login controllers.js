@@ -87,8 +87,8 @@ const login_post = async(req, res) => {
             throw errObj
         }
     } catch (err) {
-        console.log(err)
-            //send (bad request status and invoke (handleErrors) function) 
+
+        //send (bad request status and invoke (handleErrors) function) 
         res.status(400).json(handleErrors(err.errors, errMessagesObj))
     }
 }
