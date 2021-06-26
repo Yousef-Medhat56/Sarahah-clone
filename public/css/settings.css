@@ -68,6 +68,7 @@
   text-transform: capitalize;
   font-weight: bold;
   font-size: 0.8em;
+  cursor: pointer;
 }
 .settings-content input {
   padding: 5px;
