@@ -35,11 +35,5 @@ const profilePage_delAccount = async(req, res) => {
     profilePage_logout(req, res)
 }
 
-//update the user image
-const profilePage_updateImg = async(req, res) => {
 
-    await UserModel.findByIdAndUpdate(req.params.id, { image: req.file.buffer.toString("base64") })
-    res.end()
-}
-
-module.exports = { profilePage_get, profilePage_logout, profilePage_delAccount, profilePage_updateImg }
+module.exports = { profilePage_get, profilePage_logout, profilePage_delAccount }
