@@ -12,6 +12,11 @@ async function sendAuthReq(e, path) {
         //convert FormData object to reqular javascript object
         const plainFormData = Object.fromEntries(formData.entries());
 
+        //remove white spaces from the username
+        for (key in plainFormData) {
+            plainFormData[key] = plainFormData[key].replace(/\s+/, "")
+        }
+
 
         //send the user data to the server
         const response = await fetch(path, {
