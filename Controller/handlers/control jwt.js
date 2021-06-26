@@ -41,7 +41,7 @@ const verifyAccessToken = (req, res, next) => {
                 res.redirect(`/${payload.userId}`)
             } else {
 
-                req.user = payload //pass the user ID to the request object
+                req.userId = payload.userId //pass the user ID to the request object
                 next()
             }
         }

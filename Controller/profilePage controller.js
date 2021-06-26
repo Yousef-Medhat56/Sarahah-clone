@@ -7,7 +7,7 @@ const profilePage_get = async(req, res, next) => {
         const user = await UserModel.findById(req.params.id)
 
         //check if who opens the profile page is authenticated
-        const authenticatedUser = req.user && req.user.userId
+        const authenticatedUser = req.userId && req.userId
 
         //if who opens the profile page is authenticated owns the profile too, send to him ('account-owner-view') file
         if (authenticatedUser === req.params.id) {
