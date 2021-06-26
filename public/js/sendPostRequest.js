@@ -13,7 +13,7 @@ const sendChangeImgReq = async(e) => {
         formData.append("image", file)
 
         //send POST request
-        await fetch(`/image${location.pathname}`, {
+        await fetch(`/settings/profile/image`, {
             method: "POST",
             body: formData,
         })
