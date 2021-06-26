@@ -8,12 +8,12 @@ const upload = multer({ storage })
 const mongoose = require("mongoose")
 const cookieParser = require("cookie-parser")
 require('dotenv').config()
-const fs = require("fs")
 
 //import routers
 const signupRoute = require("./Routes/signupRoutes.js") //import sign up routes 
 const loginRoute = require("./Routes/loginRoutes.js") //import login routes 
 const profilePageRoute = require("./Routes/profilePageRoutes") //import profile page routes
+const settingsRoute = require("./Routes/settingsRoutes") //import profile page routes
 
 const PORT = process.env.PORT || 7777
 
@@ -41,6 +41,9 @@ app.use('/Signup', signupRoute)
 
 //login routes
 app.use('/Login', loginRoute)
+
+//settings routes
+app.use('/settings', settingsRoute)
 
 //profile page 
 app.use("/", profilePageRoute)
