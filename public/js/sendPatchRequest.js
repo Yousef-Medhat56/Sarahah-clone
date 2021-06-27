@@ -1,4 +1,4 @@
-// send POST request to change the user image
+// send patch request to change the user image
 const sendChangeImgReq = async(e) => {
 
     //valid image formats
@@ -12,9 +12,9 @@ const sendChangeImgReq = async(e) => {
         const formData = new FormData
         formData.append("image", file)
 
-        //send POST request
+        //send PATCH request
         await fetch(`/settings/profile/image`, {
-            method: "POST",
+            method: "PATCH",
             body: formData,
         })
 

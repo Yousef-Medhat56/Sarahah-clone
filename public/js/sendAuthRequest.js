@@ -1,5 +1,5 @@
 // control the Authentication request (sign up and login)
-async function sendAuthReq(e, path) {
+async function sendAuthReq(e, path, method = "POST") {
     e.preventDefault()
 
     //select the form element
@@ -20,7 +20,7 @@ async function sendAuthReq(e, path) {
 
         //send the user data to the server
         const response = await fetch(path, {
-            method: "POST",
+            method: method,
             headers: {
                 "Content-Type": "application/json",
                 Accept: "application/json",

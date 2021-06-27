@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <!--change username-->
-                <form onsubmit="sendAuthReq(event, '/settings/profile/username')">
+                <form onsubmit="sendAuthReq(event, '/settings/profile/username','PATCH')">
                     <!--username error message-->
                     <div class="error username"></div>
                     <label class="light-text" for="username">Username</label>
@@ -36,7 +36,7 @@
     </div>
     <%- include("./partials/footer.ejs") %>
 
-        <script src="../js/sendPostRequest.js"></script>
+        <script src="../js/sendPatchRequest.js"></script>
         <script src="../js/sendAuthRequest.js"></script>
 
         </html>
