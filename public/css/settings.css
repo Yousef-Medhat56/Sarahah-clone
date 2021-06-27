@@ -134,3 +134,38 @@
 .del {
   background-color: rgb(184, 81, 63);
 }
+/* modal styling */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s;
+}
+.modal-on {
+  visibility: visible;
+  opacity: 1;
+}
+.modal .box {
+  padding: 15px;
+  color: rgb(228, 227, 227);
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+}
+.modal .box button {
+  width: auto;
+  margin: 3vh 2.5vw 1vh;
+}
+.modal .out {
+  background-color: #39adb98f;
+}
+.modal .del {
+  background-color: rgba(206, 99, 80, 0.514);
+}

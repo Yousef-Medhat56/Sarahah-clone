@@ -12,15 +12,23 @@
             <div class="settings-content">
                 <div class="acc-settings">
                     <button onclick='sendLogoutReq()' class="acc-btn out">Log Out</button>
-                    <button onclick='sendDelAccReq()' class="acc-btn del">Delete my account</button>
+                    <button class="acc-btn del modal-btn">Delete account</button>
                 </div>
             </div>
         </div>
     </div>
-
+    <div class="modal">
+        <div class="box">
+            <p>are you sure you want to delete your account ?</p>
+            <button class="acc-btn out cancel">cancel</button>
+            <button onclick='sendDelAccReq()'class="acc-btn del">Delete account</button>
+        </div>
+    </div>
+    
     <%- include("./partials/footer.ejs") %>
 
         <script src="../js/sendDelRequest.js"></script>
+        <script src="../js/delAccount.js"></script>
 
 
         </html>
