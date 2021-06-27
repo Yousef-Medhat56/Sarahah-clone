@@ -9,7 +9,8 @@ const {
     settings_getPassSett,
     settings_getAccSett,
     settings_updateImg,
-    settings_updateUsername
+    settings_updateUsername,
+    settings_updatePass
 } = require("../Controller/settings controller")
 
 //import multer to convert the uploaded image into a buffer object
@@ -23,7 +24,7 @@ const upload = multer({ storage })
 router.get("/profile", verifyRefreshToken, verifyAccessToken, redirectNonAuth, settings_getProfSett)
 
 //Get the (change password) page
-router.get("/changePassword", verifyRefreshToken, verifyAccessToken, redirectNonAuth, settings_getPassSett)
+router.get("/password", verifyRefreshToken, verifyAccessToken, redirectNonAuth, settings_getPassSett)
 
 
 //Get the (account settings) page
@@ -35,6 +36,9 @@ router.patch("/profile/image", upload.single("image"), verifyRefreshToken, verif
 
 //change the username
 router.patch("/profile/username", verifyRefreshToken, verifyAccessToken, settings_updateUsername)
+
+//change the password
+router.patch("/password", verifyRefreshToken, verifyAccessToken, settings_updatePass)
 
 //get the (change password) page
 module.exports = router
