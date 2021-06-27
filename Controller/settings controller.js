@@ -1,5 +1,6 @@
 const UserModel = require("../Model/user schema")
 
+const { compare } = require("bcryptjs")
 const handleErrors = require("../Controller/handlers/authentication errors")
 
 //get the edit profile page
@@ -27,7 +28,7 @@ const settings_updateUsername = async(req, res) => {
     try {
         const { username } = req.body
         await UserModel.findByIdAndUpdate(req.userId, { username }, { runValidators: true })
-        res.send({ redirect: `/${req.userId}` })
+        res.status(200).end()
     } catch (err) {
 
         const errMessagesObj = {
@@ -45,6 +46,66 @@ const settings_updateImg = async(req, res) => {
     res.end()
 }
 
+//update the user password
+const settings_updatePass = async(req, res) => {
+    //destructing the request body
+    const { oldPassword, password, confirmPassword } = req.body
+
+    /* simulate the error object created by the validation middleware
+    ,in order to handle the errors of both sign u and login by the same (handleErrors) function */
+    const errObj = { errors: {} }
 
 
-module.exports = { settings_getProfSett, settings_getPassSett, settings_getAccSett, settings_updateImg, settings_updateUsername }
+
+    try {
+
+        //if the old password field is empty
+        if (!oldPassword) {
+            errObj.errors.password = { properties: { path: "oldPassword", message: `Please enter your old password` } }
+            throw errObj
+        } else {
+            //get the account details from the database
+            const account = await UserModel.findById(req.userId)
+
+            //check that the old password is true
+            const passIsTrue = await compare(oldPassword, account.password)
+
+            if (!passIsTrue) { //if the old password is false
+                errObj.errors.password = { properties: { path: "oldPassword", message: `Your password is incorrect` } }
+                throw errObj
+            } else {
+
+                //update the account password
+                account.password = password
+                account.confirmPassword = confirmPassword
+                await account.save()
+
+                res.status(200).end()
+            }
+        }
+    } catch (err) {
+        /*errMessagesObj = {
+                key : the error location (for example : the username field)
+                value : the error message
+            } */
+        const errMessagesObj = {
+            oldPassword: "",
+            password: "",
+            confirmPassword: ""
+        }
+
+        //send the errors to the user
+        res.status(400).json(handleErrors(err.errors, errMessagesObj))
+    }
+
+}
+
+
+module.exports = {
+    settings_getProfSett,
+    settings_getPassSett,
+    settings_getAccSett,
+    settings_updateImg,
+    settings_updateUsername,
+    settings_updatePass
+}
