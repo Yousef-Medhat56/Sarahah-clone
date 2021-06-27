@@ -1,5 +1,4 @@
 const UserModel = require("../Model/user schema")
-
 const { compare } = require("bcryptjs")
 const handleErrors = require("../Controller/handlers/authentication errors")
 
@@ -100,12 +99,24 @@ const settings_updatePass = async(req, res) => {
 
 }
 
+const profilePage_logout = (req, res) => {
 
+    res.cookie("refreshToken", '', { maxAge: 1 })
+    res.send({ redirect: "/login" })
+}
+
+const profilePage_delAccount = async(req, res) => {
+
+    await UserModel.findByIdAndDelete(req.userId)
+    profilePage_logout(req, res)
+}
 module.exports = {
     settings_getProfSett,
     settings_getPassSett,
     settings_getAccSett,
     settings_updateImg,
     settings_updateUsername,
-    settings_updatePass
+    settings_updatePass,
+    profilePage_logout,
+    profilePage_delAccount
 }

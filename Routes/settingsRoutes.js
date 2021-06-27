@@ -10,7 +10,9 @@ const {
     settings_getAccSett,
     settings_updateImg,
     settings_updateUsername,
-    settings_updatePass
+    settings_updatePass,
+    profilePage_logout,
+    profilePage_delAccount
 } = require("../Controller/settings controller")
 
 //import multer to convert the uploaded image into a buffer object
@@ -32,13 +34,20 @@ router.get("/account", verifyRefreshToken, verifyAccessToken, redirectNonAuth, s
 
 //PATCH requests
 //change profile image
-router.patch("/profile/image", upload.single("image"), verifyRefreshToken, verifyAccessToken, settings_updateImg)
+router.patch("/profile/image", upload.single("image"), verifyRefreshToken, verifyAccessToken, redirectNonAuth, settings_updateImg)
 
 //change the username
-router.patch("/profile/username", verifyRefreshToken, verifyAccessToken, settings_updateUsername)
+router.patch("/profile/username", verifyRefreshToken, verifyAccessToken, redirectNonAuth, settings_updateUsername)
 
 //change the password
-router.patch("/password", verifyRefreshToken, verifyAccessToken, settings_updatePass)
+router.patch("/password", verifyRefreshToken, verifyAccessToken, redirectNonAuth, settings_updatePass)
 
-//get the (change password) page
+//DELETE requests
+//logout the user
+router.delete("/logout", verifyRefreshToken, verifyAccessToken, redirectNonAuth, profilePage_logout)
+
+//delete the user account
+router.delete("/deleteAccount", verifyRefreshToken, verifyAccessToken, profilePage_delAccount)
+
+
 module.exports = router

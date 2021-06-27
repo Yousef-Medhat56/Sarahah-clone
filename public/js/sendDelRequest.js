@@ -7,7 +7,7 @@ const sendLogoutReq = async() => {
 
 //send delete  account request
 const sendDelAccReq = async() => {
-    const response = await fetch(`/delete-account${location.pathname}`, {
+    const response = await fetch(`/settings/deleteAccount`, {
         method: "delete"
     })
     const data = await response.json()

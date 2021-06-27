@@ -3,16 +3,11 @@ require("dotenv").config()
 
 //import middlewares
 const { verifyAccessToken, verifyRefreshToken } = require("../Controller/handlers/control jwt")
-const { profilePage_get, profilePage_logout, profilePage_delAccount } = require("../Controller/profilePage controller")
+const { profilePage_get } = require("../Controller/profilePage controller")
 
 
 
-//DELETE requests
-//logout the user
-router.delete("/logout", profilePage_logout)
 
-//delete the user account
-router.delete("/delete-account/:id", profilePage_delAccount)
 
 //GET requests
 //about page

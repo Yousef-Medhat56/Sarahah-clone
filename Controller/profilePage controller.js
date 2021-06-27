@@ -23,17 +23,4 @@ const profilePage_get = async(req, res, next) => {
 
 }
 
-const profilePage_logout = (req, res) => {
-
-    res.cookie("refreshToken", '', { maxAge: 1 })
-    res.send({ redirect: "/login" })
-}
-
-const profilePage_delAccount = async(req, res) => {
-
-    await UserModel.findByIdAndDelete(req.params.id)
-    profilePage_logout(req, res)
-}
-
-
-module.exports = { profilePage_get, profilePage_logout, profilePage_delAccount }
+module.exports = { profilePage_get }
