@@ -3,11 +3,21 @@ const UserModel = require("../Model/user schema")
 const handleErrors = require("../Controller/handlers/authentication errors")
 
 //get the edit profile page
-const settings_getProfile = async(req, res) => {
+const settings_getProfSett = async(req, res) => {
 
     const user = await UserModel.findById(req.userId)
     res.render("settings-profile", { title: "Sarahah clone | Edit profile", username: user.username, userImage: user.image })
 
+}
+
+//get the (password settings) page
+const settings_getPassSett = async(req, res) => {
+    res.render('settings-password', { title: "Sarahah clone | change your password" })
+}
+
+//get the (account settings) page
+const settings_getAccSett = async(req, res) => {
+    res.render('settings-account', { title: "Sarahah clone | Account settings" })
 }
 
 //change the username
@@ -37,4 +47,4 @@ const settings_updateImg = async(req, res) => {
 
 
 
-module.exports = { settings_getProfile, settings_updateImg, settings_updateUsername }
+module.exports = { settings_getProfSett, settings_getPassSett, settings_getAccSett, settings_updateImg, settings_updateUsername }

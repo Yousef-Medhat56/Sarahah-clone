@@ -4,7 +4,13 @@ const router = require("express").Router()
 const { verifyAccessToken, verifyRefreshToken, redirectNonAuth } = require("../Controller/handlers/control jwt")
 
 //import settings controllers
-const { settings_getProfile, settings_updateImg, settings_updateUsername } = require("../Controller/settings controller")
+const {
+    settings_getProfSett,
+    settings_getPassSett,
+    settings_getAccSett,
+    settings_updateImg,
+    settings_updateUsername
+} = require("../Controller/settings controller")
 
 //import multer
 const multer = require('multer')
@@ -13,8 +19,15 @@ const upload = multer({ storage })
 
 //GET requests
 
-//get (edit profile) page
-router.get("/profile", verifyRefreshToken, verifyAccessToken, redirectNonAuth, settings_getProfile)
+//Get (edit profile) page
+router.get("/profile", verifyRefreshToken, verifyAccessToken, redirectNonAuth, settings_getProfSett)
+
+//Get the (change password) page
+router.get("/changePassword", verifyRefreshToken, verifyAccessToken, redirectNonAuth, settings_getPassSett)
+
+
+//Get the (account settings) page
+router.get("/account", verifyRefreshToken, verifyAccessToken, redirectNonAuth, settings_getAccSett)
 
 //POST requests
 //change profile image
@@ -23,5 +36,5 @@ router.post("/profile/image", upload.single("image"), verifyRefreshToken, verify
 //change the username
 router.post("/profile/username", verifyRefreshToken, verifyAccessToken, settings_updateUsername)
 
-
+//get the (change password) page
 module.exports = router
