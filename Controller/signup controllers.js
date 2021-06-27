@@ -39,7 +39,7 @@ const signup_post = async(req, res) => {
 
 
         //redirect the user to the welcome page
-        res.send({ redirect: `/${user._id}` })
+        res.status(200).end()
     } catch (err) { //if the user input invalid data 
 
         //send (bad request status and invoke (handleErrors) function) 

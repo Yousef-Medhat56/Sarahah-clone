@@ -28,12 +28,13 @@ async function sendAuthReq(e, path, method = "POST") {
             body: JSON.stringify(plainFormData),
         });
 
-        const data = await response.json();
-
         //if the user input invalid data (make bad request)
-        if (response.status === 400) throw data; //throw the errors object as error
+        if (response.status === 400) {
+            const data = await response.json();
+            throw data; //throw the errors object as error
+        }
 
-        location.assign(data.redirect)
+        location.reload()
     } catch (err) {
         //create array for errors location
         const errKeysArr = Object.keys(err); //["username","email","password","confirmPassword"]

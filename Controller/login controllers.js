@@ -52,7 +52,7 @@ const login_post = async(req, res) => {
                     res.cookie("refreshToken", refreshToken, { maxAge: year_in_milisec })
 
                     //redirect the user to the welcome page
-                    res.send({ redirect: `/${account._id}` })
+                    res.status(200).end()
                 }
 
                 // if the password is invalid
