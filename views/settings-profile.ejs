@@ -1,6 +1,6 @@
 <%- include("./partials/header.ejs") %>
     <div class="container">
-        <div class="settings">
+        <div class="settings background-light">
             <div class="navigation">
                 <ul class="settings-nav">
                     <li class="active"><a href="/settings/profile" class="light-text">Edit profile</a></li>
@@ -27,8 +27,10 @@
                 <form onsubmit="sendAuthReq(event, '/settings/profile/username','PATCH')">
                     <!--username error message-->
                     <div class="error username"></div>
+                    <div class="input">
                     <label class="light-text" for="username">Username</label>
                     <input class="light-text" type="text" name="username" id="username" placeholder="Enter your new username...." value="<%=username%>">
+                </div>
                     <button class="submit" type="submit">Save</button>
                 </form>
             </div>

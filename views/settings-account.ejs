@@ -1,7 +1,22 @@
 <%- include("./partials/header.ejs") %>
-
-    <button onclick='sendLogoutReq()'>Log Out</button>
-    <button onclick='sendDelAccReq()'>Delete my account</button>
+<div class="container">
+    <div class="settings">
+        <!-- navigation bar -->
+        <div class="navigation">
+            <ul class="settings-nav">
+                <li><a href="/settings/profile" class="light-text">Edit profile</a></li>
+                <li><a href="/settings/changePassword" class="light-text">change password</a></li>
+                <li class="active"><a href="/settings/account" class="light-text">account settings</a></li>
+            </ul>
+        </div>
+        <div class="settings-content">
+            <div class="acc-settings">
+    <button onclick='sendLogoutReq()' class="acc-btn out">Log Out</button>
+    <button onclick='sendDelAccReq()'  class="acc-btn del">Delete my account</button>
+</div>
+</div>
+</div>
+</div>
 
     <%- include("./partials/footer.ejs") %>
 
