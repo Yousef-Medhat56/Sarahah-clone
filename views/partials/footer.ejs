@@ -7,3 +7,17 @@
 </body>
 
 <script src="../js/header.js"></script>
+<script>
+    window.addEventListener("pageshow", (event) => {
+
+        /*if the page is loaded from the cache or after clicking the back button of the browser,
+         (historyTraversal) will be true*/
+        const historyTraversal = event.persisted || (window.performance.navigation.type === 2);
+
+        if (historyTraversal) {
+
+            // Handle page restore.
+            window.location.reload();
+        }
+    });
+</script>
