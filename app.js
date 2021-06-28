@@ -36,7 +36,11 @@ mongoose.connect(process.env.db_url, { useUnifiedTopology: true, useNewUrlParser
 
 })
 
-//sign up routes
+//welcome page
+app.get("/", (req, res) => {
+        res.render('welcome', { title: "Sarahah clone | Welcome" })
+    })
+    //sign up routes
 app.use('/Signup', signupRoute)
 
 //login routes

@@ -3,33 +3,36 @@
     <body>
         <div class="container">
             <div class="register">
-            <div class="form background-light">
-                <div class="text light-text">Log in</div>
-                <form onsubmit='sendAuthReq(event,"/Login")'>
+                <div class="form background-light">
+                    <div class="text light-text">Log in</div>
+                    <form onsubmit='sendAuthReq(event,"/Login")'>
 
 
-                    <!--email error message-->
-                    <div class="error email"></div>
-                    <!--input the email-->
-                    <label for="email" class="light-text">email address</label>
-                    <input type="text" name="email" id="email" placeholder="Please enter your email..." />
+                        <!--email error message-->
+                        <div class="error email"></div>
+                        <!--input the email-->
+                        <label for="email" class="light-text">email address</label>
+                        <input type="text" name="email" id="email" placeholder="Please enter your email..." />
 
-                    <!--password error message-->
-                    <div class="error password"></div>
-                    <!--input the password-->
-                    <label for="password" class="light-text">password</label>
-                    <input type="password" name="password" id="password" placeholder="Please enter your password..." />
+                        <!--password error message-->
+                        <div class="error password"></div>
+                        <!--input the password-->
+                        <label for="password" class="light-text">password</label>
+                        <input type="password" name="password" id="password" placeholder="Please enter your password..." />
 
-                    <input type="submit" value="Log in" class="button" />
-                    <!-- register redirection -->
-                    <p class="redirect light-text">Don't have an account? <a href="/signup">sign up</a></p>
-                </form>
+                        <input type="submit" value="Log in" class="button" />
+                        <!-- register redirection -->
+                        <p class="redirect light-text">Don't have an account? <a href="/signup">sign up</a></p>
+                    </form>
+                </div>
             </div>
-        </div>
         </div>
         <!--Footer-->
         <%- include("./partials/footer.ejs") %>
 
             <script src="../js/sendAuthRequest.js"></script>
+            <script type="text/javascript">
+                window.history.forward();
+            </script>
 
             </html>

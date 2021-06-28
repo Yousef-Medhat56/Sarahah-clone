@@ -102,7 +102,7 @@ const settings_updatePass = async(req, res) => {
 const profilePage_logout = (req, res) => {
 
     res.cookie("refreshToken", '', { maxAge: 1 })
-    res.send({ redirect: "/login" })
+    res.end()
 }
 
 const profilePage_delAccount = async(req, res) => {
