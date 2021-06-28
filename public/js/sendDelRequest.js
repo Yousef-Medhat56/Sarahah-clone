@@ -1,6 +1,6 @@
 //send logout request
 const sendLogoutReq = async() => {
-    const response = await fetch('/logout', { method: "delete" })
+    const response = await fetch('/settings/logout', { method: "delete" })
     const data = await response.json()
     location.assign(data.redirect)
 }
