@@ -192,18 +192,16 @@ textarea:focus {
   cursor: pointer;
 }
 .light-text {
-  transition: 0.5s;
   color: rgb(32, 32, 32);
 }
 .dark-text {
   color: rgb(218, 216, 216) !important;
-  transition: 0.5s;
 }
 .background-light {
   background-color: rgba(0, 0, 0, 0.05);
 }
 .background-dark {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.05) !important;
 }
 /* error message styling */
 .err-message {
@@ -227,4 +225,7 @@ textarea:focus {
 }
 .redirect a:hover {
   color: rgb(84, 153, 143);
+}
+.transition {
+  transition: 0.8s;
 }
