@@ -2,19 +2,21 @@
     <div class="container">
         <div class="acc-content">
             <img src="data:image/png;base64,<%=image%>" alt="user avatar" />
-            <h1>You are
+            <h1 class="light-text user-name">
                 <%= username %>
             </h1>
 
-            <a href="/settings/profile">Edit profile</a>
+            <a class="edit" href="/settings/profile">Edit profile</a>
 
-            <button id="copy-url-btn">Copy your link</button>
+            <button class="copy" id="copy-url-btn">copy link</button>
 
         </div>
 
         <!--messages-->
-        <div class="messages-container">Messages
+        <div class="messages-container background-light light-text">
+            <p class="heading">Your Messages &nbsp;<i class="fas fa-angle-down"></i></p>
             <!--if there are NO Messages to the user-->
+            <div class="inner">
             <% if(!messages.length) { %>
 
                 <div>No messages Yet, share tour link with your friends</div>
@@ -25,10 +27,11 @@
                     <% messages.forEach(messageObj=>{ %>
 
                         <!--message container-->
-                        <div class="message-container">
+                        <div class="message-container background-light">
 
                             <!--message content-->
                             <div class="message">
+                                <div class="message-content">
                                 <!--check if the message is public-->
                                 <% if(messageObj.isPublic){ %>
                                     <!--add globe icon before the public message-->
@@ -41,9 +44,12 @@
                                 <%=messageObj.date%>
                             </div>
                         </div>
+                        </div>
                         <%})%>
                             <%}%>
-        </div>
+        
+                        </div>
+                    </div>
     </div>
     <%- include("./partials/footer.ejs") %>
 
