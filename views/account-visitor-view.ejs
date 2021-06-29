@@ -1,16 +1,50 @@
 <%- include("./partials/header.ejs") %>
     <div class="container">
         <div class="acc-content">
-            <img alt="user avatar" src="data:image/png;base64,<%=userImage%>" />
+            <!--user image-->
+            <img alt="user avatar" src="data:image/png;base64,<%=image%>" />
+
+            <!--user name-->
             <h3 class="user-name light-text">
                 <%=username%>
             </h3>
-            <form action="">
-                <textarea maxlength="200" name="message" cols="30" rows="7" placeholder="type yor message here" class="background-light"></textarea>
+            <form id="message-form">
+                <!--message errors-->
+                <div class="error message"></div>
+                <textarea name="message" id="message-textarea" cols="30" rows="10" placeholder="Type your message here..." class="background-light"></textarea>
+                <!--letters counter-->
+                <div><span id="letters-counter">0</span>/200</div>
+                <input type="checkbox" name="isPublic" id="isPublic" value="true">
+                <label for="isMsgPublic">do you want your message to be public?</label>
                 <button type="submit">send <i class="far fa-paper-plane"></i></button>
             </form>
+
         </div>
+
+
     </div>
     <%- include("./partials/footer.ejs") %>
+        <script src="../js/sendAuthRequest.js"></script>
+        <script type="text/javascript">
+            //select the form
+            const msgFormElm = document.getElementById("message-form")
+
+            //add submit event to the form
+            msgFormElm.addEventListener("submit", (e) => sendAuthReq(e, `/sendMessage${location.pathname}`, "PATCH"))
+
+            //select letters counter element
+            const letterCounterElm = document.getElementById("letters-counter")
+
+            //add input event to the textarea
+            document.getElementById("message-textarea").addEventListener("input", function() {
+                //assign the message length to the letters counter value
+                letterCounterElm.textContent = this.value.length
+
+                /*if the message length is bigger than 200 change the color to red
+                    , else reset the color*/
+                letterCounterElm.style.color = this.value.length > 200 ? "red" : "unset"
+
+            })
+        </script>
 
         </html>
