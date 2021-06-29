@@ -74,7 +74,7 @@ const verifyRefreshToken = async(req, res, next) => {
 //if the user is not authenticated, he will be redirected to the login page
 const redirectNonAuth = (req, res, next) => {
     if (!req.userId) {
-        res.redirect("/login")
+        res.redirect("/")
         return
     } else next()
 
