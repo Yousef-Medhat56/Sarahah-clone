@@ -21,7 +21,32 @@
 
         </div>
 
+        <!--Public messages-->
+        <div class="messages-container">Public Messages
+            <!--if there are NO PUBLIC messages to the user-->
+            <% if(!publicMessages.length) { %>
 
+                <div>No public messages</div>
+
+                <!--if there are public messages to the user-->
+                <%}else{%>
+                    <!--loop through the messages array-->
+                    <% publicMessages.forEach(messageObj=>{ %>
+
+                        <div class="message-container">
+                            <!--message content-->
+                            <div class="message">
+                                <%=messageObj.message%>
+                            </div>
+                            <!--message date-->
+                            <div class="message-date">
+                                <%=messageObj.date%>
+                            </div>
+                        </div>
+                        <%})%>
+
+                            <%}%>
+        </div>
     </div>
     <%- include("./partials/footer.ejs") %>
         <script src="../js/sendAuthRequest.js"></script>
