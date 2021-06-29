@@ -1,9 +1,7 @@
 const mongoose = require("mongoose")
 const { isEmail } = require("validator")
 const { genSalt, hash } = require("bcryptjs")
-
 const fs = require("fs")
-
 
 //create user schema
 const userScema = new mongoose.Schema({
@@ -46,7 +44,18 @@ const userScema = new mongoose.Schema({
             return fs.readFileSync("./Public/assets/female.jpg", { encoding: 'base64' })
 
         }
-    }
+    },
+    messages: [{
+        message: {
+            type: String,
+            required: [true, 'Pleae enter your message'],
+            maxlength: [200, "Your message must be 200 characters at maximum"]
+        },
+        isPublic: String,
+        date: String
+
+    }],
+
 })
 
 // hash the user password after sign up before creating his account
