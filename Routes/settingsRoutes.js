@@ -21,6 +21,8 @@ const storage = multer.memoryStorage()
 const upload = multer({ storage })
 
 //GET requests
+//redirect the user to (/settings/profile) if he entered (/settings) only
+router.get("/", verifyRefreshToken, verifyAccessToken, redirectNonAuth, (req, res) => res.redirect("/settings/profile"))
 
 //Get (edit profile) page
 router.get("/profile", verifyRefreshToken, verifyAccessToken, redirectNonAuth, settings_getProfSett)
