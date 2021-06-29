@@ -1,16 +1,40 @@
 <%- include("./partials/header.ejs") %>
     <div class="container">
         <div class="acc-content">
-            <img src="data:image/png;base64,<%=userImage%>" alt="user avatar" />
+            <img src="data:image/png;base64,<%=image%>" alt="user avatar" />
             <h1>You are
                 <%= username %>
             </h1>
 
             <a href="/settings/profile">Edit profile</a>
 
+            <button id="copy-url-btn">Copy your link</button>
+
         </div>
+
+
     </div>
     <%- include("./partials/footer.ejs") %>
 
+        <script type="text/javascript">
+            //select copy button url
+            let urlBtn = document.getElementById("copy-url-btn")
+
+            //create input tag to copy the user link from it
+            const pseudoInput = document.createElement("input")
+            pseudoInput.value = window.location.href //assign the user url to the input value
+
+            urlBtn.onclick = () => {
+                //append the pseudo input tag to the body
+                document.getElementsByTagName("body")[0].appendChild(pseudoInput)
+                pseudoInput.select() //select the input value (user url)
+                document.execCommand("copy") //copy the input value (user url)
+
+                //remove the pseudo input tag from the body
+                document.getElementsByTagName("body")[0].removeChild(pseudoInput)
+                urlBtn.innerText = "link Copied !"
+
+            }
+        </script>
 
         </html>
