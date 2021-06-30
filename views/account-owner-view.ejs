@@ -12,46 +12,52 @@
 
         </div>
 
-        <!--messages-->
-        <div class="messages-container background-light light-text">
-            <p class="heading">Your Messages &nbsp;<i class="fas fa-angle-down"></i></p>
-            <!--if there are NO Messages to the user-->
-            <div class="inner">
-            <% if(!messages.length) { %>
+        <!--if there are NO Messages to the user-->
+        <% if(!messages.length) { %>
 
-                <div>No messages Yet, share tour link with your friends</div>
+            <div>
+                <h2>Your Messages</h2>
+                <p> messages Yet, share your link with your friends</p>
+            </div>
 
-                <!--if there are messages to the user-->
-                <%}else{%>
-                    <!--loop through the messages array-->
-                    <% messages.forEach(messageObj=>{ %>
+            <!--if there are messages to the user-->
+            <%}else{%>
+                <!--messages-->
+                <div class="messages-container background-light light-text">
+                    <p class="heading" onclick="showMsgs()">Your Messages &nbsp;<i class="fas fa-angle-down"></i></p>
 
-                        <!--message container-->
-                        <div class="message-container background-light">
+                    <div class="inner">
 
-                            <!--message content-->
-                            <div class="message">
-                                <div class="message-content">
-                                <!--check if the message is public-->
-                                <% if(messageObj.isPublic){ %>
-                                    <!--add globe icon before the public message-->
-                                    <i class="fas fa-globe-americas"></i>
-                                    <%}%>
-                                        <%=messageObj.message%>
+                        <!--loop through the messages array-->
+                        <% messages.forEach(messageObj=>{ %>
+
+                            <!--message container-->
+                            <div class="message-container background-light">
+
+                                <!--message content-->
+                                <div class="message">
+                                    <div class="message-content">
+                                        <!--check if the message is public-->
+                                        <% if(messageObj.isPublic){ %>
+                                            <!--add globe icon before the public message-->
+                                            <i class="fas fa-globe-americas"></i>
+                                            <%}%>
+                                                <%=messageObj.message%>
+                                    </div>
+                                    <!--message date-->
+                                    <div class="message-date">
+                                        <%=messageObj.date%>
+                                    </div>
+                                </div>
                             </div>
-                            <!--message date-->
-                            <div class="message-date">
-                                <%=messageObj.date%>
-                            </div>
-                        </div>
-                        </div>
-                        <%})%>
-                            <%}%>
-        
-                        </div>
+                            <%})%>
+                                <%}%>
+
                     </div>
+                </div>
     </div>
     <%- include("./partials/footer.ejs") %>
+        <script src="../js/messagesContainer.js"></script>
 
         <script type="text/javascript">
             //select copy button url

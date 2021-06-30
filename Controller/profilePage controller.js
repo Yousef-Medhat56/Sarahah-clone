@@ -42,7 +42,7 @@ const profilePage_patch = async(req, res) => {
                     message,
                     isPublic,
                     date: moment().format(
-                        "dddd, MMMM Do YYYY, h:mm a")
+                        "MMMM Do YYYY, h:mm a")
                 }
             }
         }, { runValidators: true })
