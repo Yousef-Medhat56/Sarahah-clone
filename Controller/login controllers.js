@@ -46,7 +46,7 @@ const login_post = async(req, res) => {
 
 
                     //create new access and refresh tokens
-                    await createTokens(account._id)
+                    await createTokens(account.username)
 
                     // set refresh token into cookie
                     res.cookie("refreshToken", refreshToken, { maxAge: year_in_milisec })
@@ -89,7 +89,7 @@ const login_post = async(req, res) => {
     } catch (err) {
 
         //send (bad request status and invoke (handleErrors) function) 
-        res.status(400).json(handleErrors(err.errors, errMessagesObj))
+        res.status(400).json(handleErrors(err, errMessagesObj))
     }
 }
 

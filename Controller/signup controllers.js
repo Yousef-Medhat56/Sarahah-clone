@@ -32,7 +32,7 @@ const signup_post = async(req, res) => {
         const user = await UserModel.create(req.body)
 
         //create new access and refresh tokens
-        await createTokens(user._id)
+        await createTokens(user.username)
 
         // set refresh token into cookie
         res.cookie("refreshToken", refreshToken, { maxAge: year_in_milisec })
@@ -42,8 +42,9 @@ const signup_post = async(req, res) => {
         res.status(200).end()
     } catch (err) { //if the user input invalid data 
 
+
         //send (bad request status and invoke (handleErrors) function) 
-        res.status(400).json(handleErrors(err.errors, errMessagesObj, err.code))
+        res.status(400).json(handleErrors(err, errMessagesObj))
     }
 }
 

@@ -27,7 +27,7 @@ app.use(express.urlencoded())
 app.use(express.json())
 
 //connect database
-mongoose.connect(process.env.db_url, { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false }, () => {
+mongoose.connect(process.env.db_url, { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, autoIndex: true }, () => {
 
     app.listen(PORT, () => {
         console.log(`we are building http://localhost:7777/Login`)
