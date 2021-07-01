@@ -1,14 +1,274 @@
-<%- include("./partials/header.ejs") %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title%></title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+        <!-- header -->
+  <div class="header">
+    <div class="container">
+      <div class="logo">
+        <i class="far fa-envelope"></i>
+        <p>sarahah clone</p>
+      </div>
+      <nav>
+        <div class="list-icon"><i class="fas fa-list-ul"></i></div>
+        <ul class="header-nav">
+          <li>
+            <a href="/about">about</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+            <!-- header style tag -->
+  <style>
+      * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* responsive */
+@media (max-width: 767px) {
+  .container {
+    width: 100%;
+    padding: 15px !important;
+  }
+  .form {
+    width: 100%;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+  }
+  .form input {
+    max-width: 100%;
+  }
+  .form form {
+    max-width: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
 
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
+  max-width: 100%;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
+                    /* body background color غيره براحتك بقي يسطا */
+  background-color: #222;
+  color: #ddd;
+}
+.background-light {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.header .container {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 15px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header {
+  background-color: #08808e;
+  height: 9vh;
+}
+/* logo styling  */
+.header .logo {
+  display: flex;
+  align-items: center;
+}
+.header p {
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 0.3px;
+  text-transform: capitalize;
+  margin-left: 10px;
+}
+.header .fa-envelope,
+.fa-list-ul {
+  font-size: 30px;
+  color: white;
+}
+/* nav styling */
+.header-nav {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  height: 100%;
+}
+nav {
+  height: 100%;
+  position: relative;
+}
+.header-nav li {
+  padding: 10px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s;
+  position: relative;
+  border-radius: 3px;
+  cursor: pointer;
+  -webkit-transition: background-color 0.3s;
+  -moz-transition: background-color 0.3s;
+  -ms-transition: background-color 0.3s;
+  -o-transition: background-color 0.3s;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+.header-nav li:not(.darks):hover {
+  background-color: rgba(255, 255, 255, 20%);
+}
+.header-nav li:not(.darks):hover::after {
+  content: "";
+  background-color: #c9e8ea;
+  width: 100%;
+  height: 3px;
+  bottom: 0px;
+  left: 0;
+  position: absolute;
+}
+.header-nav li a,
+.header-nav li button {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  text-transform: capitalize;
+}
+.header-nav li a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* responsive */
+.list-icon {
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%) rotateY(180deg);
+}
+</style>
+                <!-- end header styling -->
+
+</html>
     <body>
+                    <!-- 404 page content -->
         <div class="container">
             <div class="content">
                 <h2><i class="fas fa-bomb"></i> error 404</h2>
-                <p class="light-text">the page you have requestd doesn't exist</p>
+                <p>the page you have requestd doesn't exist</p>
                 <a href="">go back</a>
             </div>
         </div>
-        <!--Footer-->
-        <%- include("./partials/footer.ejs") %>
-        <script src="./js/header.jss"></script>
+                <!-- 404 page styling -->
+                <style>
+                    .content {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  padding: 3em;
+}
+
+.content h2 {
+  text-transform: uppercase;
+  color: #08808e;
+  letter-spacing: -3px;
+  font-size: 4em;
+}
+.content p {
+  font-weight: bold;
+  margin: 1rem auto 3em;
+  font-size: 1.3em;
+  line-height: 1.6;
+}
+.content a {
+  text-decoration: none;
+  color: rgb(32, 32, 32);
+  background-color: #7ac9d0;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1.5px solid #00505994;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+                </style>
+                <!-- footer -->
+        <div class="footer background-light">
+            <div class="container">
+                <p class="light-text">Made with <i class="fas fa-heart"></i> </p>
+                <p class="light-text">&copy; <a href="https://www.instagram.com/yousef_medhat56/" target="_blank">Yousef Medhat</a> &amp; <a href="https://www.instagram.com/muhamedsafwat_/" target="_blank">Muhamed Safwat</a></p>
+            </div>
+        </div>
+        </body>
+                    <!-- footer styling -->
+                    <style>
+                        .footer {
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+.footer .container {
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+}
+.footer p {
+  text-transform: capitalize;
+  font-weight: 600;
+  margin: 0 5px;
+}
+.footer a {
+  text-decoration: none;
+  color: #23aab9;
+  transition: color 0.3s;
+}
+.footer a:hover {
+  color: rgb(84, 153, 143);
+}
+
+                    </style>
             </html>

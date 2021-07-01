@@ -9,12 +9,12 @@
   text-transform: uppercase;
   color: #08808e;
   letter-spacing: -3px;
-  font-size: 5em;
+  font-size: 4em;
 }
 .content p {
   font-weight: bold;
   margin: 1rem auto 3em;
-  font-size: 1.5em;
+  font-size: 1.3em;
   line-height: 1.6;
 }
 .content a {

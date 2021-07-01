@@ -15,9 +15,9 @@
         <!--if there are NO Messages to the user-->
         <% if(!messages.length) { %>
 
-            <div>
-                <h2>Your Messages</h2>
-                <p> messages Yet, share your link with your friends</p>
+            <div class="empty-container background-light light-text">
+                <h4 class="empty-heading">Your Messages</h4>
+                <p>No messages yet, share your link with friends</p>
             </div>
 
             <!--if there are messages to the user-->
@@ -30,20 +30,20 @@
 
                         <!--loop through the messages array-->
                         <% messages.forEach(messageObj=>{ %>
-
                             <!--message container-->
                             <div class="message-container background-light">
-
                                 <!--message content-->
+                                 <!--check if the message is public-->
+                                 <div class="msg-top">
+                                <% if(messageObj.isPublic){ %>
+                                    <!--add globe icon before the public message-->
+                                    <i class="fas fa-globe-americas public-icon"><p>public message</p></i>
+                                    <%}%>
+                                <button class=" del-msg light-text">
+                                    <i class="fas fa-times "></i>                            </button>
+                        </div>
                                 <div class="message">
-                                    <div class="message-content">
-                                        <!--check if the message is public-->
-                                        <% if(messageObj.isPublic){ %>
-                                            <!--add globe icon before the public message-->
-                                            <i class="fas fa-globe-americas"></i>
-                                            <%}%>
                                                 <%=messageObj.message%>
-                                    </div>
                                     <!--message date-->
                                     <div class="message-date">
                                         <%=messageObj.date%>
@@ -52,7 +52,6 @@
                             </div>
                             <%})%>
                                 <%}%>
-
                     </div>
                 </div>
     </div>

@@ -64,6 +64,22 @@ textarea:focus {
   max-width: 60vw;
   text-align: center;
 }
+/* empty message container */
+.empty-container {
+  margin: auto;
+  width: 30vw;
+  padding: 15px;
+  border-radius: 5px;
+  height: fit-content;
+  text-align: center;
+}
+.empty-heading {
+  text-align: center;
+}
+.empty-container p {
+  margin-top: 2vh;
+  line-height: 1.5;
+}
 /* public messages container styling*/
 .messages-container {
   margin: auto;
@@ -104,12 +120,36 @@ textarea:focus {
   border-radius: 5px;
   border-top: 1px solid #10bbb2b0;
 }
-.message-container i {
-  height: 100%;
+.msg-top {
+  position: relative;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  height: 20px;
   margin-bottom: 5px;
+}
+.public-icon {
+  display: flex !important;
+  align-items: center;
+}
+.public-icon p {
+  font-size: 12px;
+  margin-left: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+}
+.del-msg {
+  padding: 5px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  background-color: transparent;
+  border: none;
+  transition: 0.5s;
+}
+.del-msg:hover {
+  transition: 0.3s;
+  color: rgb(129, 59, 59) !important;
 }
 .message-date {
   font-size: 13px;
@@ -122,13 +162,13 @@ textarea:focus {
     max-width: 13vh;
     height: 13vh;
   }
-  .full-container {
-    height: 40vh;
-    width: 50vw;
-  }
   .messages-container {
     margin: auto;
-    width: 70vw;
+    width: 50vw;
+  }
+  .full-container {
+    height: 40vh;
+    width: 90vw;
   }
   .messages-container .heading::after {
     display: none;

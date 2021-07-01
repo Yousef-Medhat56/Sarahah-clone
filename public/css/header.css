@@ -97,8 +97,8 @@ nav {
 }
 .dark {
   position: relative;
-  padding: 15px;
-  width: 50px;
+  padding: 13px;
+  width: 42px;
   background-color: rgba(211, 211, 211, 0.4);
   border-radius: 15px;
   -webkit-border-radius: 15px;
@@ -111,13 +111,13 @@ nav {
   position: absolute;
   top: 50%;
   right: 2px;
-  transform: translateY(-50%) scale(1.5);
+  transform: translateY(-50%) scale(1.2);
 }
 .button-clicked {
   background-color: rgba(0, 0, 0, 30%);
 }
 .clicked {
-  transform: translate(-28px, -50%) scale(1.5) rotate(360deg) !important;
+  transform: translate(-19px, -50%) scale(1.2) rotate(360deg) !important;
 }
 .fa-moon {
   color: white;
@@ -187,6 +187,7 @@ nav {
   .header-nav li a {
     width: 30vw;
     text-align: center;
+    justify-content: center;
   }
   .darks {
     justify-content: center;
