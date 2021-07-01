@@ -21,3 +21,12 @@
 .footer a:hover {
   color: rgb(84, 153, 143);
 }
+@media (max-width: 450px) {
+  .footer .container {
+    flex-direction: column;
+    padding-bottom: 5px !important;
+  }
+  .footer p {
+    margin-bottom: 10px;
+  }
+}
