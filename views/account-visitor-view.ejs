@@ -62,14 +62,14 @@
     </div>
     <%- include("./partials/footer.ejs") %>
         <script src="../js/messagesContainer.js"></script>
-        <script src="../js/sendAuthRequest.js"></script>
+        <script src="../js/sendFormRequest.js"></script>
         <script type="text/javascript">
             //select the form
             const msgFormElm = document.getElementById("message-form");
 
             //add submit event to the form
             msgFormElm.addEventListener("submit", (e) =>
-                sendAuthReq(e, `/sendMessage${location.pathname}`, "PATCH")
+                sendFormReq(e, `/sendMessage${location.pathname}`, "PATCH")
             );
 
             //select letters counter element

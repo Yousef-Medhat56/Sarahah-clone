@@ -5,7 +5,7 @@
             <div class="register">
                 <div class="form background-light">
                     <div class="text light-text">Sign up</div>
-                    <form onsubmit='sendAuthReq(event,"/signup")'>
+                    <form onsubmit='sendFormReq(event,"/signup")'>
 
                         <!--username error message-->
                         <div class="error username"></div>
@@ -57,6 +57,6 @@
         <!--Footer-->
         <%- include("./partials/footer.ejs") %>
 
-            <script src="../js/sendAuthRequest.js"></script>
+            <script src="../js/sendFormRequest.js"></script>
 
             </html>

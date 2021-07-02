@@ -52,8 +52,8 @@ const login_post = async(req, res) => {
                     // set refresh token into cookie
                     res.cookie("refreshToken", refreshToken, { maxAge: year_in_milisec })
 
-                    //redirect the user to the welcome page
-                    res.status(200).end()
+                    //redirect the user to the his profile page
+                    res.status(200).json({ redirect: `/${account._id}` })
                 }
 
                 // if the password is invalid

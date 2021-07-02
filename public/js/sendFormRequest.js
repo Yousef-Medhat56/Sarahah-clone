@@ -1,5 +1,5 @@
-// control the Authentication request (sign up and login)
-async function sendAuthReq(e, path, method = "POST") {
+// control any request from FORM tags(sign up, login, update username, update password)
+async function sendFormReq(e, path, method = "POST") {
     e.preventDefault()
 
     //select the form element
@@ -22,13 +22,17 @@ async function sendAuthReq(e, path, method = "POST") {
             body: JSON.stringify(plainFormData),
         });
 
+        const data = await response.json();
+
         //if the user input invalid data (make bad request)
-        if (response.status === 400) {
-            const data = await response.json();
-            throw data; //throw the errors object as error
+        if (response.status === 400) throw data; //throw the errors object as error
+
+        if (data.redirect) { //if the server redirect to another page
+            location.assign(data.redirect)
+        } else { //if the server send data to the page
+            return new Promise((resolve, reject) => resolve(data))
         }
 
-        location.reload()
     } catch (err) {
         //create array for errors location
         const errKeysArr = Object.keys(err); //["username","email","password","confirmPassword"]

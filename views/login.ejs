@@ -5,7 +5,7 @@
             <div class="register">
                 <div class="form background-light">
                     <div class="text light-text">Log in</div>
-                    <form onsubmit='sendAuthReq(event,"/Login")'>
+                    <form onsubmit='sendFormReq(event,"/Login")'>
 
 
                         <!--email error message-->
@@ -30,6 +30,6 @@
         <!--Footer-->
         <%- include("./partials/footer.ejs") %>
 
-            <script src="../js/sendAuthRequest.js"></script>
+            <script src="../js/sendFormRequest.js"></script>
 
             </html>
