@@ -1,4 +1,6 @@
 <%- include("./partials/header.ejs") %>
+
+
     <div class="container">
         <div class="acc-content">
             <img src="data:image/png;base64,<%=image%>" alt="user avatar" />
@@ -24,30 +26,30 @@
             <%}else{%>
                 <!--messages-->
                 <div class="messages-container background-light light-text">
-                    <p class="heading" onclick="showMsgs()">Your Messages &nbsp;<i class="fas fa-angle-down"></i></p>
+                    <p class="msg-heading" onclick="showMsgs()">Your Messages &nbsp;<i class="fas fa-angle-down"></i></p>
 
-                    <div class="inner">
+                    <div class="inner" id="messages-container">
 
                         <!--loop through the messages array-->
                         <% messages.forEach(messageObj=>{ %>
                             <!--message container-->
                             <div class="message-container background-light">
                                 <!--message content-->
-                                 <!--check if the message is public-->
-                                 <div class="msg-top">
-                                <% if(messageObj.isPublic){ %>
-                                    <!--add globe icon before the public message-->
-                                    <i class="fas fa-globe-americas public-icon"><p>public message</p></i>
-                                    <%}%>
-                                <button class=" del-msg light-text">
+                                <!--check if the message is public-->
+                                <div class="msg-top">
+                                    <% if(messageObj.isPublic){ %>
+                                        <!--add globe icon before the public message-->
+                                        <i class="fas fa-globe-americas public-icon"><p>public message</p></i>
+                                        <%}%>
+                                            <button onclick="sendDelMsReq(event)" class="del-msg light-text">
                                     <i class="fas fa-times "></i>                            </button>
-                        </div>
+                                </div>
                                 <div class="message">
-                                                <%=messageObj.message%>
-                                    <!--message date-->
-                                    <div class="message-date">
-                                        <%=messageObj.date%>
-                                    </div>
+                                    <%=messageObj.message%>
+                                        <!--message date-->
+                                        <div class="message-date">
+                                            <%=messageObj.date%>
+                                        </div>
                                 </div>
                             </div>
                             <%})%>
@@ -78,5 +80,6 @@
 
             }
         </script>
+        <script src="../js/sendDelRequest.js"></script>
 
         </html>

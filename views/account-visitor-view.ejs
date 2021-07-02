@@ -1,136 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= title%></title>
-    <link rel="stylesheet" href="../css/header.css" type="text/css" />
-    <link rel="stylesheet" href="../css/normalize.css" type="text/css" />
-    <link rel="stylesheet" href="../css/register.css" type="text/css" />
-    <link rel="stylesheet" href="../css/footer.css" type="text/css" />
-    <link rel="stylesheet" href="../css/about.css" type="text/css" />
-    <link rel="stylesheet" href="../css/404.css" type="text/css" />
-    <link rel="stylesheet" href="../css/account.css" type="text/css" />
-    <link rel="stylesheet" href="../css/settings.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
-  <div class="header">
+<%- include("./partials/header.ejs") %>
     <div class="container">
-      <div class="logo">
-        <i class="far fa-envelope"></i>
-        <p>sarahah clone</p>
-      </div>
-      <nav>
-        <div class="list-icon"><i class="fas fa-list-ul"></i></div>
-        <ul class="header-nav">
-          <li>
-            <a href="/about">about</a>
-          </li>
-          <li>
-            <a href="/">join sarahah </a>
-          </li>
-          <li class="darks">
-            <div class="dark">
-              <i class="fas fa-sun"></i>
-              <i class="fas fadeOut fa-moon"></i>
+        <div class="acc-content">
+            <!--user image-->
+            <img alt="user avatar" src="data:image/png;base64,<%=image%>" />
+
+            <!--user name-->
+            <h3 class="user-name light-text">
+                <%=username%>
+            </h3>
+            <form id="message-form">
+                <!--message errors-->
+                <div class="error message"></div>
+                <textarea name="message" id="message-textarea" cols="30" rows="10" placeholder="Type your message here..." class="background-light light-text"></textarea>
+                <!--letters counter-->
+                <div class="light-text"><span id="letters-counter">0</span>/200</div>
+                <!-- public message checkbox -->
+                <div class="public">
+                    <input type="checkbox" name="isPublic" id="isPublic" value="true" />
+                    <label for="isPublic" class="light-text">public message</label>
+                    <button type="submit">send <i class="far fa-paper-plane"></i></button>
+                </div>
+            </form>
+        </div>
+
+        <!--if there are NO PUBLIC messages to the user-->
+        <% if(!publicMessages.length) { %>
+            <div class="empty-container background-light light-text">
+                <h4 class="empty-heading">there is no public messages</h4>
             </div>
-          </li>
-        </ul>
-      </nav>
+
+            <!--if there are public messages to the user-->
+            <%}else{%>
+                <!--Public messages-->
+                <div class="messages-container background-light light-text">
+                    <p class="msg-heading" onclick="showMsgs()">
+                        Public Messages &nbsp;<i class="fas fa-angle-down"></i>
+                    </p>
+
+                    <div class="inner">
+                        <!--loop through the messages array-->
+                        <% publicMessages.forEach(messageObj=>{ %>
+
+                            <div class="message-container background-light">
+                                <div class="message-content">
+                                    <!--message content-->
+                                    <p class="message">
+                                        <%=messageObj.message%>
+                                    </p>
+                                    <!--message date-->
+                                    <p class="message-date">
+                                        <%=messageObj.date%>
+                                    </p>
+                                </div>
+                            </div>
+                            <%})%>
+                                <%}%>
+                    </div>
+                </div>
     </div>
-  </div>
-  <div class="container">
-    <div class="acc-content">
-      <!--user image-->
-      <img alt="user avatar" src="data:image/png;base64,<%=image%>" />
+    <%- include("./partials/footer.ejs") %>
+        <script src="../js/messagesContainer.js"></script>
+        <script src="../js/sendAuthRequest.js"></script>
+        <script type="text/javascript">
+            //select the form
+            const msgFormElm = document.getElementById("message-form");
 
-      <!--user name-->
-      <h3 class="user-name light-text"><%=username%></h3>
-      <form id="message-form">
-        <!--message errors-->
-        <div class="error message"></div>
-        <textarea
-          name="message"
-          id="message-textarea"
-          cols="30"
-          rows="10"
-          placeholder="Type your message here..."
-          class="background-light light-text"
-        ></textarea>
-        <!--letters counter-->
-        <div class="light-text"><span id="letters-counter">0</span>/200</div>
-        <!-- public message checkbox -->
-        <div class="public">
-          <input type="checkbox" name="isPublic" id="isPublic" value="true" />
-          <label for="isPublic" class="light-text">public message</label>
-          <button type="submit">send <i class="far fa-paper-plane"></i></button>
-        </div>
-      </form>
-    </div>
+            //add submit event to the form
+            msgFormElm.addEventListener("submit", (e) =>
+                sendAuthReq(e, `/sendMessage${location.pathname}`, "PATCH")
+            );
 
-    <!--if there are NO PUBLIC messages to the user-->
-    <% if(!publicMessages.length) { %>
-    <div class="empty-container background-light light-text">
-      <h4 class="empty-heading">there is no public messages</h4>
-    </div>
+            //select letters counter element
+            const letterCounterElm = document.getElementById("letters-counter");
 
-    <!--if there are public messages to the user-->
-    <%}else{%>
-    <!--Public messages-->
-    <div class="messages-container background-light light-text">
-      <p class="heading" onclick="showMsgs()">
-        Public Messages &nbsp;<i class="fas fa-angle-down"></i>
-      </p>
+            //add input event to the textarea
+            document
+                .getElementById("message-textarea")
+                .addEventListener("input", function() {
+                    //assign the message length to the letters counter value
+                    letterCounterElm.textContent = this.value.length;
 
-      <div class="inner">
-        <!--loop through the messages array-->
-        <% publicMessages.forEach(messageObj=>{ %>
+                    /*if the message length is bigger than 200 change the color to red
+                                        , else reset the color*/
+                    letterCounterElm.style.color =
+                        this.value.length > 200 ? "red" : "unset";
+                });
+        </script>
 
-        <div class="message-container background-light">
-          <div class="message-content">
-            <!--message content-->
-            <p class="message"><%=messageObj.message%></p>
-            <!--message date-->
-            <p class="message-date"><%=messageObj.date%></p>
-          </div>
-        </div>
-        <%})%> <%}%>
-      </div>
-    </div>
-  </div>
-  <%- include("./partials/footer.ejs") %>
-  <script src="../js/messagesContainer.js"></script>
-  <script src="../js/sendAuthRequest.js"></script>
-  <script type="text/javascript">
-    //select the form
-    const msgFormElm = document.getElementById("message-form");
-
-    //add submit event to the form
-    msgFormElm.addEventListener("submit", (e) =>
-      sendAuthReq(e, `/sendMessage${location.pathname}`, "PATCH")
-    );
-
-    //select letters counter element
-    const letterCounterElm = document.getElementById("letters-counter");
-
-    //add input event to the textarea
-    document
-      .getElementById("message-textarea")
-      .addEventListener("input", function () {
-        //assign the message length to the letters counter value
-        letterCounterElm.textContent = this.value.length;
-
-        /*if the message length is bigger than 200 change the color to red
-                            , else reset the color*/
-        letterCounterElm.style.color =
-          this.value.length > 200 ? "red" : "unset";
-      });
-  </script>
-</html>
+        </html>
