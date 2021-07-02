@@ -37,6 +37,9 @@
   flex-basis: 60%;
   line-height: 1.6;
 }
+.landing-text p {
+  max-width: 400px;
+}
 .landing-buttons {
   flex: 1;
   display: flex;

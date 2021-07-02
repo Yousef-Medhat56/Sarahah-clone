@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100vh;
+  height: fit-content;
 }
 .heading {
   flex-basis: 45%;
@@ -16,6 +16,7 @@
 }
 .heading p {
   font-size: 25px;
+  max-width: 100px;
 }
 .heading p a {
   text-decoration: none;
