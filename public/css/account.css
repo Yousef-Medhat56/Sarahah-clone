@@ -73,16 +73,12 @@ textarea:focus {
   height: fit-content;
   text-align: center;
 }
-.empty-heading {
-  text-align: center;
-}
 .empty-container p {
-  margin-top: 2vh;
   line-height: 1.5;
 }
 /* public messages container styling*/
 .messages-container {
-  margin: auto;
+  margin: 0 auto 5vh;
   width: 30vw;
   padding: 15px 0 15px 15px;
   border-radius: 5px;
@@ -177,9 +173,10 @@ textarea:focus {
   .acc-content img {
     max-width: 13vh;
     height: 13vh;
+    margin-top: 3vh;
   }
   .messages-container {
-    margin: auto;
+    margin: 0 auto 2.5vh;
     width: 50vw;
   }
   .full-container {
@@ -191,5 +188,15 @@ textarea:focus {
   }
   .public button {
     margin-top: 1vh;
+  }
+  .copy {
+    margin: 2.5vh 0;
+  }
+  .acc-content textarea {
+    width: 75vw;
+    margin-bottom: 2vh;
+  }
+  #message-form {
+    margin-bottom: 2.5vh;
   }
 }

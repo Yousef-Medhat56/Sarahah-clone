@@ -162,6 +162,9 @@ nav {
   font-size: 22px;
 }
 @media (max-width: 570px) {
+  .header {
+    height: 7vh;
+  }
   .header-nav {
     opacity: 0;
     pointer-events: none;
