@@ -9,6 +9,8 @@
                 <%=username%>
             </h3>
             <form id="message-form">
+                <!--server message-->
+                <div class="server-msg"></div>
                 <!--message errors-->
                 <div class="error message"></div>
                 <textarea name="message" id="message-textarea" cols="30" rows="10" placeholder="Type your message here..." class="background-light light-text"></textarea>
@@ -25,7 +27,7 @@
 
         <!--if there are NO PUBLIC messages to the user-->
         <% if(!publicMessages.length) { %>
-            <div class="empty-container background-light light-text">
+            <div id="container" class="empty-container background-light light-text">
                 <h4 class="empty-heading">there is no public messages</h4>
             </div>
 
@@ -33,13 +35,13 @@
             <!--if there are public messages to the user-->
             <%}else{%>
                 <!--Public messages-->
-                <div class="messages-container background-light light-text">
-                    <p class="msg-heading" onclick="showMsgs()">
-                        Public Messages &nbsp;<i class="fas fa-angle-down"></i>
+                <div id="container" class="messages-container full-container background-light light-text">
+                    <p class="msg-heading">
+                        Public Messages
                     </p>
 
 
-                    <div class="inner">
+                    <div class="inner" id="messages-container">
                         <!--loop through the messages array-->
                         <% publicMessages.forEach(messageObj=>{ %>
 
@@ -64,14 +66,6 @@
         <script src="../js/messagesContainer.js"></script>
         <script src="../js/sendFormRequest.js"></script>
         <script type="text/javascript">
-            //select the form
-            const msgFormElm = document.getElementById("message-form");
-
-            //add submit event to the form
-            msgFormElm.addEventListener("submit", (e) =>
-                sendFormReq(e, `/sendMessage${location.pathname}`, "PATCH")
-            );
-
             //select letters counter element
             const letterCounterElm = document.getElementById("letters-counter");
 
@@ -87,6 +81,77 @@
                     letterCounterElm.style.color =
                         this.value.length > 200 ? "red" : "unset";
                 });
+        </script>
+
+        <!--send message to the server and get the server response-->
+        <script>
+            //select the form
+            const msgFormElm = document.getElementById("message-form");
+
+            //add submit event to the form
+            msgFormElm.addEventListener("submit", async(e) => {
+                //show success update message
+                document.querySelector('.server-msg').innerHTML = ''
+                const data = await sendFormReq(e, `/sendMessage${location.pathname}`, "PATCH")
+                if (data) {
+                    //reset error message
+                    document.querySelector('.error').innerHTML = ''
+
+                    //reset textarea 
+                    document.getElementById("message-textarea").value = ''
+                    document.getElementById("letters-counter").textContent = 0
+
+                    //reset public message radio button
+                    document.getElementById("isPublic").checked = false
+
+                    //show success send message
+                    document.querySelector('.server-msg').innerHTML = `<p class= 'success-msg'><i class="fas fa-check-circle"></i> ${data.message}</p>`
+
+                    //if there are public messages
+                    if (data.messages.length) {
+
+                        const messages = data.messages.reverse() //reverse the messages order from the newest to the oldest
+
+                        const msgsContainerElm = document.getElementById("container")
+
+                        if (msgsContainerElm.className.includes('empty-container')) {
+                            msgsContainerElm.classList.remove("empty-container")
+                            msgsContainerElm.className += " messages-container full-container"
+
+                        }
+
+                        //write messages container header
+                        msgsContainerElm.innerHTML = `<p class = "msg-heading">
+                                Public Messages </p>
+                                
+                                <div class="inner" id="messages-container"></div>
+                                `
+
+                        //show each message
+                        messages.forEach((msgObj, index) => {
+                            msgsContainerElm.querySelector('.inner').innerHTML += ` 
+                            <div class="message-container background-light">
+                                <div class="message-content">
+                                    <!--message content-->
+                                    <p class="message"></p>
+                                    <!--message date-->
+                                    <p class="message-date">
+                                        ${msgObj.date}
+                                    </p>
+                                </div>
+                            </div>`
+
+                            //show message content
+                            msgsContainerElm.querySelectorAll('.message')[index].innerText = msgObj.message
+
+                        })
+
+                        //check the theme mode
+                        darkMode()
+
+                    }
+                }
+            });
         </script>
 
         </html>

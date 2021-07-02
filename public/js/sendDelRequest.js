@@ -74,6 +74,9 @@ const displayMessages = (messages) => {
                         </div>
                 </div>
             </div>`
+
+        //check the theme mode
+        darkMode()
        //show thw message content
        document.getElementsByClassName("message-content")[index].textContent = msgObj.message
        //show thw message date

@@ -38,7 +38,7 @@ const profilePage_get = async(req, res, next) => {
 const profilePage_patch = async(req, res) => {
     try {
         const { message, isPublic } = req.body
-        await UserModel.findByIdAndUpdate(req.params.id, {
+        const user = await UserModel.findByIdAndUpdate(req.params.id, {
             $push: {
                 messages: {
                     message,
@@ -47,9 +47,9 @@ const profilePage_patch = async(req, res) => {
                         "MMMM Do YYYY, h:mm a")
                 }
             }
-        }, { runValidators: true })
+        }, { runValidators: true, new: true })
 
-        res.end()
+        res.json({ message: 'Send message successfully', messages: user.messages.filter(message => message.isPublic) })
     } catch (err) {
 
         const errMessagesObj = { message: "" }
