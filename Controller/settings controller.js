@@ -99,16 +99,29 @@ const settings_updatePass = async(req, res) => {
 
 }
 
+//delete message
+const settings_delMsg = async(req, res) => {
+    const { msgIndex } = req.body //the message index
+    const user = await UserModel.findById(req.userId)
+    user.messages.splice(msgIndex, 1) //delete the message
+    user.confirmPassword = user.password //to avoid validation errors
+    await user.save()
 
+    res.json({ messages: user.messages })
+}
+
+//logout
 const profilePage_logout = (req, res) => {
-
+    //logout the user by expire his authentication cookie
     res.cookie("refreshToken", '', { maxAge: 1 })
     res.end()
 }
 
+//delete the user account
 const profilePage_delAccount = async(req, res) => {
-
     await UserModel.findByIdAndDelete(req.userId)
+
+    //logout the user after deleting his account
     profilePage_logout(req, res)
 }
 module.exports = {
