@@ -77,6 +77,19 @@ textarea:focus {
   line-height: 1.5;
 }
 /* public messages container styling*/
+.public-messages-container {
+  margin: 0 auto 5vh;
+  width: 50vw;
+  padding: 15px 0 15px 15px;
+  border-radius: 5px;
+  height: fit-content;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+.public-messages-container .msg-heading {
+  margin-bottom: 2vh;
+  text-align: center;
+}
 .messages-container {
   margin: 0 auto 5vh;
   width: 30vw;
@@ -174,6 +187,10 @@ textarea:focus {
     max-width: 13vh;
     height: 13vh;
     margin-top: 3vh;
+  }
+  .public-messages-container {
+    margin: 0 auto 2.5vh;
+    width: 90vw;
   }
   .messages-container {
     margin: 0 auto 2.5vh;

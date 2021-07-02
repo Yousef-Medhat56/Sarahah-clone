@@ -34,7 +34,7 @@
                     <div class="error username"></div>
                     <div class="input">
                         <label class="light-text" for="username">Username</label>
-                        <input oninput="inputNewName(event)" class="light-text" type="text" name="username" id="username" placeholder="Enter your new username...." value="<%=username%>">
+                        <input maxlength="15" oninput="inputNewName(event)" class="light-text" type="text" name="username" id="username" placeholder="Enter your new username...." value="<%=username%>">
                     </div>
                     <button class="submit" type="submit">Save</button>
                 </form>

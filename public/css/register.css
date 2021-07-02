@@ -214,6 +214,17 @@ textarea:focus {
   border: 1.5px solid #4b080838;
   transition: 0.5s;
 }
+.success-msg {
+  color: #014501;
+  background-color: #b5e5b5;
+  margin: 2vh 0;
+  padding: 6px 12px;
+  width: fit-content;
+  border-radius: 4px;
+
+  border: 1.5px solid #4b080838;
+  transition: 0.5s;
+}
 /* redirection lik styling */
 .redirect {
   text-align: center;
