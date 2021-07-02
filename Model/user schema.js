@@ -3,9 +3,10 @@ const { isEmail } = require("validator")
 const { genSalt, hash } = require("bcryptjs")
 const fs = require("fs")
 
+
 //validators
-// check the username validation
-const validateUsername = (username) => { return username === encodeURIComponent(username) }
+// check that the username doesn't include any invalid characters
+const validateUsername = (username) => { return !/[^\sA-Za-z-_]|[\s]{2}/g.test(username) }
 
 //create user schema
 const userScema = new mongoose.Schema({
@@ -13,10 +14,10 @@ const userScema = new mongoose.Schema({
     username: {
         type: String,
         required: [true, 'Please enter your username'],
-        unique: true,
         maxlength: [50, 'The username must be 50 characters at maximum'],
         minlength: [3, 'The username must be 3 characters at minimum'],
-        validate: [validateUsername, 'The username must include english letters, numbers, underscore and hyphen only']
+
+        validate: [validateUsername, 'Your username is not invalid, please try another one']
 
     },
     email: {
@@ -28,8 +29,8 @@ const userScema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, 'Please enter your password'],
-        minlength: [8, 'The password must be 8 characters at minimum'],
-        maxlength: [30, 'The password must be 30 characters at maximum']
+        minlength: [8, 'The password must be 8 characters at minimum']
+
     },
     confirmPassword: {
         type: String,
