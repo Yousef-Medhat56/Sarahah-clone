@@ -11,6 +11,7 @@ const {
     settings_updateImg,
     settings_updateUsername,
     settings_updatePass,
+    settings_delMsg,
     profilePage_logout,
     profilePage_delAccount
 } = require("../Controller/settings controller")
@@ -45,6 +46,10 @@ router.patch("/profile/username", verifyRefreshToken, verifyAccessToken, redirec
 router.patch("/password", verifyRefreshToken, verifyAccessToken, redirectNonAuth, settings_updatePass)
 
 //DELETE requests
+
+//delete message
+router.delete("/deleteMessage", verifyRefreshToken, verifyAccessToken, redirectNonAuth, settings_delMsg)
+
 //logout the user
 router.delete("/logout", verifyRefreshToken, verifyAccessToken, redirectNonAuth, profilePage_logout)
 

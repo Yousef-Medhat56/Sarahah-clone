@@ -2,9 +2,6 @@
 
 const express = require("express")
 const app = express()
-const multer = require('multer')
-const storage = multer.memoryStorage()
-const upload = multer({ storage })
 const mongoose = require("mongoose")
 const cookieParser = require("cookie-parser")
 require('dotenv').config()
@@ -27,7 +24,7 @@ app.use(express.urlencoded())
 app.use(express.json())
 
 //connect database
-mongoose.connect(process.env.db_url, { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, autoIndex: true }, () => {
+mongoose.connect(process.env.db_url, { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false }, () => {
 
     app.listen(PORT, () => {
         console.log(`we are building http://localhost:7777/Login`)
