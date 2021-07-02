@@ -1,5 +1,5 @@
 //handle user errors during authentication
-const handleErrors = (errorsObj, errMsgObj) => {
+const handleErrors = (errorsObj, errMsgObj, errorCode = null) => {
 
 
     /*errMessagesObj = {
@@ -7,18 +7,13 @@ const handleErrors = (errorsObj, errMsgObj) => {
         value : the error message
     } */
 
-    //check if the username or the email are already registered (not unique)
-    if (errorsObj.code) {
-        const key = Object.keys(errorsObj.keyValue)[0] //username or email
-
-        errMsgObj[key] = `This ${key} is already registered` //error message
-    }
-
+    //check if the email is already registered (not unique)
+    if (errorCode) errMsgObj["email"] = "This email is already registered"
 
     //if the email is registered but there are other errors
     else if (errorsObj) {
         // convert the errors object to array
-        const errorsArr = Object.values(errorsObj.errors)
+        const errorsArr = Object.values(errorsObj)
         errorsArr.forEach(({ properties }) => { //destructing the properties object 
 
             /*assign the error message to the error location

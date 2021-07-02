@@ -9,6 +9,7 @@ const handleErrors = require("./handlers/authentication errors")
 
 //GET the signup page
 const signup_get = (req, res) => {
+
     //send the sign up page
     res.render('register', { title: "Sarahah clone | Sign Up" })
 
@@ -16,6 +17,7 @@ const signup_get = (req, res) => {
 
 //POST to the signup page
 const signup_post = async(req, res) => {
+
 
     /*errMessagesObj = {
         key : the error location (for example : the username field)
@@ -32,7 +34,7 @@ const signup_post = async(req, res) => {
         const user = await UserModel.create(req.body)
 
         //create new access and refresh tokens
-        await createTokens(user.username)
+        await createTokens(user._id)
 
         // set refresh token into cookie
         res.cookie("refreshToken", refreshToken, { maxAge: year_in_milisec })
@@ -42,9 +44,8 @@ const signup_post = async(req, res) => {
         res.status(200).end()
     } catch (err) { //if the user input invalid data 
 
-
         //send (bad request status and invoke (handleErrors) function) 
-        res.status(400).json(handleErrors(err, errMessagesObj))
+        res.status(400).json(handleErrors(err.errors, errMessagesObj, err.code))
     }
 }
 

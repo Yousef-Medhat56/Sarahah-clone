@@ -1,12 +1,11 @@
 const UserModel = require("../Model/user schema")
 const { compare } = require("bcryptjs")
 const handleErrors = require("../Controller/handlers/authentication errors")
-const { createTokens } = require("../Controller/handlers/control jwt")
 
 //get the edit profile page
 const settings_getProfSett = async(req, res) => {
 
-    const user = await UserModel.findOne({ username: req.username })
+    const user = await UserModel.findById(req.userId)
     res.render("settings-profile", { title: "Sarahah clone | Edit profile", username: user.username, userImage: user.image })
 
 }
@@ -27,14 +26,8 @@ const settings_updateUsername = async(req, res) => {
     //check the username validation
     try {
         const { username } = req.body
-        const user = await UserModel.findOneAndUpdate({ username: req.username }, { username }, { new: true, runValidators: true })
-
-        //create new access and refresh tokens
-        await createTokens(user.username)
-
-        // set refresh token into cookie
-        res.cookie("refreshToken", refreshToken, { maxAge: year_in_milisec })
-        res.status(200).send()
+        await UserModel.findByIdAndUpdate(req.userId, { username }, { runValidators: true })
+        res.status(200).json({ message: "Username updated successfully" })
     } catch (err) {
 
         const errMessagesObj = {
@@ -42,14 +35,14 @@ const settings_updateUsername = async(req, res) => {
         }
 
         //send bad request status to the user and show him his errors
-        res.status(400).json(handleErrors(err, errMessagesObj))
+        res.status(400).json(handleErrors(err.errors, errMessagesObj))
     }
 }
 
 //update the user image
 const settings_updateImg = async(req, res) => {
-    await UserModel.findOneAndUpdate({ username: req.username }, { image: req.file.buffer.toString("base64") })
-    res.end()
+    const user = await UserModel.findByIdAndUpdate(req.userId, { image: req.file.buffer.toString("base64") }, { new: true })
+    res.json({ image: user.image, message: 'Profile image updated successfully' })
 }
 
 //update the user password
@@ -71,8 +64,7 @@ const settings_updatePass = async(req, res) => {
             throw errObj
         } else {
             //get the account details from the database
-            const account = await UserModel.findOne({ username: req.username })
-            console.log(account)
+            const account = await UserModel.findById(req.userId)
 
             //check that the old password is true
             const passIsTrue = await compare(oldPassword, account.password)
@@ -87,7 +79,7 @@ const settings_updatePass = async(req, res) => {
                 account.confirmPassword = confirmPassword
                 await account.save()
 
-                res.status(200).end()
+                res.status(200).json({ message: "Password updated successfully" })
             }
         }
     } catch (err) {
@@ -100,12 +92,13 @@ const settings_updatePass = async(req, res) => {
             password: "",
             confirmPassword: ""
         }
-        console.log(err)
-            //send the errors to the user
-        res.status(400).json(handleErrors(err, errMessagesObj))
+
+        //send the errors to the user
+        res.status(400).json(handleErrors(err.errors, errMessagesObj))
     }
 
 }
+
 
 const profilePage_logout = (req, res) => {
 
@@ -115,7 +108,7 @@ const profilePage_logout = (req, res) => {
 
 const profilePage_delAccount = async(req, res) => {
 
-    await UserModel.findOneAndDelete({ username: req.username })
+    await UserModel.findByIdAndDelete(req.userId)
     profilePage_logout(req, res)
 }
 module.exports = {
@@ -125,6 +118,7 @@ module.exports = {
     settings_updateImg,
     settings_updateUsername,
     settings_updatePass,
+    settings_delMsg,
     profilePage_logout,
     profilePage_delAccount
 }

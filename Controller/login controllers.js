@@ -8,6 +8,7 @@ const { createTokens } = require("./handlers/control jwt")
 
 //GET the login page
 const login_get = (req, res) => {
+
     //send the login page
     res.render('login', { title: "Sarahah clone | Log in" })
 }
@@ -46,7 +47,7 @@ const login_post = async(req, res) => {
 
 
                     //create new access and refresh tokens
-                    await createTokens(account.username)
+                    await createTokens(account._id)
 
                     // set refresh token into cookie
                     res.cookie("refreshToken", refreshToken, { maxAge: year_in_milisec })
@@ -89,7 +90,7 @@ const login_post = async(req, res) => {
     } catch (err) {
 
         //send (bad request status and invoke (handleErrors) function) 
-        res.status(400).json(handleErrors(err, errMessagesObj))
+        res.status(400).json(handleErrors(err.errors, errMessagesObj))
     }
 }
 
