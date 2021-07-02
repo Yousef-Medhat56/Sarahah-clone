@@ -1,4 +1,7 @@
 <%- include("./partials/header.ejs") %>
+
+
+
     <div class="container">
         <div class="settings background-light">
             <div class="navigation">
@@ -9,9 +12,10 @@
                 </ul>
             </div>
             <div class="settings-content">
+                <div class="server-msg"></div>
                 <div class="pic">
                     <!--user image-->
-                    <img src="data:image/png;base64,<%=userImage%>" alt="user avatar" />
+                    <img id="user-avatar" src="data:image/png;base64,<%=userImage%>" alt="user avatar" />
                     <!--username-->
                     <div class="pic-text">
                         <p class="light-text">
@@ -24,12 +28,12 @@
                     </div>
                 </div>
                 <!--change username-->
-                <form onsubmit="sendAuthReq(event, '/settings/profile/username','PATCH')">
+                <form onsubmit="sendReq(event, '/settings/profile/username','PATCH')">
                     <!--username error message-->
                     <div class="error username"></div>
                     <div class="input">
                         <label class="light-text" for="username">Username</label>
-                        <input class="light-text" type="text" name="username" id="username" placeholder="Enter your new username...." value="<%=username%>">
+                        <input oninput="inputNewName(event)" class="light-text" type="text" name="username" id="username" placeholder="Enter your new username...." value="<%=username%>">
                     </div>
                     <button class="submit" type="submit">Save</button>
                 </form>
@@ -39,6 +43,22 @@
     <%- include("./partials/footer.ejs") %>
 
         <script src="../js/sendPatchRequest.js"></script>
-        <script src="../js/sendAuthRequest.js"></script>
+        <script src="../js/sendFormRequest.js"></script>
+        <script>
+            const inputNewName = e => document.querySelector(".pic-text p").innerText = e.target.value
+            const sendReq = async(e, path, method) => {
+                //reset server messages
+                document.querySelector('.server-msg').innerHTML = ''
+                const data = await sendFormReq(e, path, method)
+
+                if (data) { //if the name updated successfully
+                    //reset any error messages if they are
+                    document.querySelector('.error.username').innerHTML = ''
+
+                    //show success update message
+                    document.querySelector('.server-msg').innerHTML = `<p class= 'success-msg'><i class="fas fa-check-circle"></i> ${data.message}</p>`
+                }
+            }
+        </script>
 
         </html>

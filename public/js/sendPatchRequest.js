@@ -1,5 +1,6 @@
 // send patch request to change the user image
 const sendChangeImgReq = async(e) => {
+    document.querySelector('.server-msg').innerHTML = ''
 
     //valid image formats
     const allowedExtensions =
@@ -13,13 +14,19 @@ const sendChangeImgReq = async(e) => {
         formData.append("image", file)
 
         //send PATCH request
-        await fetch(`/settings/profile/image`, {
+        const respone = await fetch(`/settings/profile/image`, {
             method: "PATCH",
             body: formData,
         })
 
-        //reload the page after getting the response
-        location.reload()
+        const { image, message } = await respone.json()
+        const userImgElm = document.getElementById("user-avatar")
+
+        //update the user image in the profile page without refreshing the page
+        userImgElm.setAttribute("src", `data:image/png;base64,${image}`)
+
+        //show success updating message to the user
+        document.querySelector('.server-msg').innerHTML = `<p class= 'success-msg'><i class="fas fa-check-circle"></i> ${message}</p>`
     }
     //if the file format is not valid
     else {
