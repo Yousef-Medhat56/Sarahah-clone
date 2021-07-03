@@ -113,7 +113,11 @@ const settings_delMsg = async(req, res) => {
 //logout
 const profilePage_logout = (req, res) => {
     //logout the user by expire his authentication cookie
-    res.cookie("refreshToken", '', { maxAge: 1 })
+    res.cookie("refreshToken", '', {
+        maxAge: 1,
+        secure: process.env.NODE_ENV !== "development",
+        httpOnly: true,
+    })
     res.end()
 }
 

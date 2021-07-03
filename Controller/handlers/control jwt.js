@@ -55,7 +55,11 @@ const verifyRefreshToken = async(req, res, next) => {
                 //create new access and refresh tokens
                 await createTokens(payload.userId)
                     // set refresh token into cookie
-                res.cookie("refreshToken", refreshToken, { maxAge: year_in_milisec })
+                res.cookie("refreshToken", refreshToken, {
+                    maxAge: year_in_milisec,
+                    secure: process.env.NODE_ENV !== "development",
+                    httpOnly: true,
+                })
                 next()
             }
         })

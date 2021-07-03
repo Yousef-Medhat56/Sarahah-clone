@@ -50,7 +50,11 @@ const login_post = async(req, res) => {
                     await createTokens(account._id)
 
                     // set refresh token into cookie
-                    res.cookie("refreshToken", refreshToken, { maxAge: year_in_milisec })
+                    res.cookie("refreshToken", refreshToken, {
+                        maxAge: year_in_milisec,
+                        secure: process.env.NODE_ENV !== "development",
+                        httpOnly: true,
+                    })
 
                     //redirect the user to the his profile page
                     res.status(200).json({ redirect: `/${account._id}` })
