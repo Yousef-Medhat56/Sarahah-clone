@@ -34,7 +34,7 @@
                     <div class="error username"></div>
                     <div class="input">
                         <label class="light-text" for="username">Username</label>
-                        <input maxlength="15" oninput="inputNewName(event)" class="light-text" type="text" name="username" id="username" placeholder="Enter your new username...." value="<%=username%>">
+                        <input maxlength="15" class="light-text" type="text" name="username" id="username" placeholder="Enter your new username...." value="<%=username%>">
                     </div>
                     <button class="submit" type="submit">Save</button>
                 </form>
@@ -46,13 +46,15 @@
         <script src="../js/sendPatchRequest.js"></script>
         <script src="../js/sendFormRequest.js"></script>
         <script>
-            const inputNewName = e => document.querySelector(".pic-text p").innerText = e.target.value
             const sendReq = async(e, path, method) => {
                 //reset server messages
                 document.querySelector('.server-msg').innerHTML = ''
                 const data = await sendFormReq(e, path, method)
 
                 if (data) { //if the name updated successfully
+                    //change the username
+                    document.querySelector(".pic-text p").innerText = data.username
+
                     //reset any error messages if they are
                     document.querySelector('.error.username').innerHTML = ''
 

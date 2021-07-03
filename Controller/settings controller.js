@@ -27,7 +27,7 @@ const settings_updateUsername = async(req, res) => {
     try {
         const { username } = req.body
         await UserModel.findByIdAndUpdate(req.userId, { username }, { runValidators: true })
-        res.status(200).json({ message: "Username updated successfully" })
+        res.status(200).json({ username, message: "Username updated successfully" })
     } catch (err) {
 
         const errMessagesObj = {
