@@ -13,7 +13,7 @@ const profilePageRoute = require("./Routes/profilePageRoutes") //import profile 
 const settingsRoute = require("./Routes/settingsRoutes") //import profile page routes
 
 const PORT = process.env.PORT || 7777
-
+process.env.tz = 'Africa/Cairo' //set timezone to cairo
 
 app.set('view engine', 'ejs')
 
