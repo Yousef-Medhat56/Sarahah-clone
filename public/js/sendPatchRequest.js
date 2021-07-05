@@ -1,6 +1,9 @@
 // send patch request to change the user image
 const sendChangeImgReq = async(e) => {
+
+    //reset messages
     document.querySelector('.server-msg').innerHTML = ''
+    document.querySelector('.error.image').innerHTML = ''
 
     //valid image formats
     const allowedExtensions =
@@ -19,14 +22,21 @@ const sendChangeImgReq = async(e) => {
             body: formData,
         })
 
-        const { image, message } = await respone.json()
-        const userImgElm = document.getElementById("user-avatar")
+        try {
+            const { image, message } = await respone.json()
 
-        //update the user image in the profile page without refreshing the page
-        userImgElm.setAttribute("src", `data:image/png;base64,${image}`)
+            const userImgElm = document.getElementById("user-avatar")
 
-        //show success updating message to the user
-        document.querySelector('.server-msg').innerHTML = `<p class= 'success-msg'><i class="fas fa-check-circle"></i> ${message}</p>`
+            //update the user image in the profile page without refreshing the page
+            userImgElm.setAttribute("src", `data:image/png;base64,${image}`)
+
+            //show success updating message to the user
+            document.querySelector('.server-msg').innerHTML = `<p class= 'success-msg'><i class="fas fa-check-circle"></i> ${message}</p>`
+
+        } catch (err) {
+            //show message error
+            document.querySelector('.error.image').innerHTML = `<p class = "err-message"><i class="fas fa-exclamation-circle"></i> an error happened, please try again</p>`;
+        }
     }
     //if the file format is not valid
     else {
