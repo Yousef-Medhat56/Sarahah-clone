@@ -39,10 +39,16 @@ const settings_updateUsername = async(req, res) => {
     }
 }
 
+
 //update the user image
 const settings_updateImg = async(req, res) => {
-    const user = await UserModel.findByIdAndUpdate(req.userId, { image: req.file.buffer.toString("base64") }, { new: true })
-    res.json({ image: user.image, message: 'Profile image updated successfully' })
+    const imageType = require('image-type');
+    if (imageType(req.file.buffer)) { //check that the image file isn't empty
+        const user = await UserModel.findByIdAndUpdate(req.userId, { image: req.file.buffer.toString("base64") }, { new: true })
+        res.json({ image: user.image, message: 'Profile image updated successfully' })
+    } else {
+        res.status(400).end()
+    }
 }
 
 //update the user password
@@ -133,6 +139,7 @@ module.exports = {
     settings_getPassSett,
     settings_getAccSett,
     settings_updateImg,
+
     settings_updateUsername,
     settings_updatePass,
     settings_delMsg,
