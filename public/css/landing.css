@@ -1,133 +1,139 @@
 .header {
-  background-color: rgba(0, 0, 0, 0.2);
-  z-index: 7;
-}
-.landing {
-  position: absolute;
-  top: 0;
-  height: 100vh;
-  width: 100%;
-  background-image: url(../assets/landing.jpg);
-  background-size: cover;
-  background-position: center;
-  display: flex;
-}
-.landing::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0.7) 20%,
-    transparent
-  );
-}
-.landing .container {
-  color: rgb(182, 207, 203);
-  text-transform: capitalize;
-  z-index: 6;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.landing-text {
-  flex-basis: 60%;
-  line-height: 1.6;
-}
-.landing-text p {
-  max-width: 400px;
-}
-.landing-buttons {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.landing-buttons a {
-  width: 100px;
-  padding: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  border-radius: 5px;
-  background-color: transparent;
-  color: rgba(255, 255, 255, 0.9);
-  text-transform: capitalize;
-  text-decoration: none;
-  text-align: center;
-  margin-top: 3vh;
-  box-shadow: inset 0px 0px 5px rgba(255, 255, 255, 0.5);
-  transition: 0.3s;
-}
-.landing-buttons a:hover {
-  box-shadow: inset 0px 0px 5px 1px rgba(255, 255, 255, 0.8);
+    background-color: rgba(0, 0, 0, 0.15);
+    z-index: 7;
 }
 
-/* responsive */
-/* removing icon */
-@media (max-width: 570px) {
-  nav {
-    width: fit-content;
-    height: 100%;
+.landing {
     position: absolute;
-    top: 0px;
-    right: 15px;
-  }
-  .header-nav {
-    opacity: 1;
-    pointer-events: all;
-    display: inline-block;
-    background-color: transparent;
-    height: 9vh;
-    width: fit-content;
-    position: absolute;
-    right: 0;
     top: 0;
-    z-index: 6;
-  }
-  .list-icon {
-    display: none;
-  }
-  .header-nav li {
-    position: relative;
-    width: fit-content;
-    text-align: center;
-  }
-  .header-nav li a {
+    height: 100vh;
+    width: 100%;
+    background-image: url(../assets/landing.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+}
+
+.landing::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    text-align: center;
-  }
-
-  .header-nav li:not(.darks)::after {
-    content: "";
-    display: none;
-  }
+    background-image: linear-gradient( 80deg, rgba(0, 0, 0, 0.3) 20%, transparent);
 }
-/* page styling */
-@media (max-width: 476px) {
-  .landing .container {
+
+.landing .container {
+    color: rgb(182, 207, 203);
+    text-transform: capitalize;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.landing-text {
+    flex-basis: 60%;
+    line-height: 1.6;
+}
+
+.landing-text p {
+    max-width: 400px;
+}
+
+.landing-buttons {
+    flex: 1;
+    display: flex;
     flex-direction: column;
-    height: fit-content;
-    top: 20%;
-    position: absolute;
-  }
-  .landing-text {
+    align-items: flex-end;
+}
+
+.landing-buttons a {
+    width: 100px;
+    padding: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: capitalize;
+    text-decoration: none;
     text-align: center;
-  }
-  .landing::before {
-    background-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.7) 30%,
-      transparent
-    );
-  }
-  .landing-buttons {
-    margin-top: 5vh;
-    flex-direction: row;
-  }
-  .landing-buttons a {
-    margin-left: 5vw;
-  }
+    margin-top: 3vh;
+    box-shadow: inset 0px 0px 5px rgba(255, 255, 255, 0.5);
+    transition: 0.3s;
+}
+
+.landing-buttons a:hover {
+    box-shadow: inset 0px 0px 5px 1px rgba(255, 255, 255, 0.8);
+}
+
+
+/* responsive */
+
+
+/* removing icon */
+
+@media (max-width: 570px) {
+    nav {
+        width: fit-content;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        right: 15px;
+    }
+    .header-nav {
+        opacity: 1;
+        pointer-events: all;
+        display: inline-block;
+        background-color: transparent;
+        height: 9vh;
+        width: fit-content;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 6;
+    }
+    .list-icon {
+        display: none;
+    }
+    .header-nav li {
+        position: relative;
+        width: fit-content;
+        text-align: center;
+    }
+    .header-nav li a {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
+    .header-nav li:not(.darks)::after {
+        content: "";
+        display: none;
+    }
+}
+
+
+/* page styling */
+
+@media (max-width: 476px) {
+    .landing .container {
+        flex-direction: column;
+        height: fit-content;
+        top: 20%;
+        position: absolute;
+    }
+    .landing-text {
+        text-align: center;
+    }
+    .landing::before {
+        background-image: linear-gradient( to bottom, rgba(0, 0, 0, 0.7) 30%, transparent);
+    }
+    .landing-buttons {
+        margin-top: 5vh;
+        flex-direction: row;
+    }
+    .landing-buttons a {
+        margin-left: 5vw;
+    }
 }
