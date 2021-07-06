@@ -74,3 +74,18 @@ darkBtn.addEventListener("click", () => {
 listBtn.addEventListener("click", function () {
   list.classList.toggle("visible");
 });
+
+// show passowrd function
+const showBtn = document.querySelector(".fa-eye");
+const passwordInbut = document.querySelectorAll(".pswrd");
+
+showBtn.addEventListener("click", () => {
+  for (input of passwordInbut) {
+    if (input.type === "password") {
+      input.type = "text";
+    } else {
+      input.type = "password";
+    }
+  }
+  showBtn.classList.toggle("clicked-eye");
+});
